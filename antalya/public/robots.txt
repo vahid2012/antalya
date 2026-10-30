@@ -47,4 +47,4 @@ Allow: /
 User-agent: OAI-SearchBot
 Allow: /
 
-Sitemap: https://www.toursantaya.ir/sitemap-index.xml
+Sitemap: https://www.toursantalya.ir/sitemap-index.xml
