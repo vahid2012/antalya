@@ -1,0 +1,206 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import WhatsAppCTA from '../components/WhatsAppCTA.astro';
+import QuickFacts from '../components/QuickFacts.astro';
+import { SITE, waLink } from '../data/site';
+
+const heroImage = 'https://images.pexels.com/photos/36511581/pexels-photo-36511581.jpeg?auto=compress&cs=tinysrgb&w=1920';
+const oldTownImage = 'https://images.pexels.com/photos/6979377/pexels-photo-6979377.jpeg?auto=compress&cs=tinysrgb&w=800';
+const tourImage = 'https://images.pexels.com/photos/33057970/pexels-photo-33057970.jpeg?auto=compress&cs=tinysrgb&w=800';
+
+const title = 'Antalya City Tour with Professional Guide | Small Group Luxury | Tours Antalya';
+const description = 'Book a guided Antalya city tour with a professional live guide. Explore Kaleiçi Old Town, Düden Waterfalls, boat trips, and cable car in a small luxury group.';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'City Tour with Guide', item: `${SITE.url}/antalya-city-tour-with-guide/` },
+  ],
+};
+
+const tourSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristTrip',
+  name: 'Antalya City Tour with Professional Guide',
+  description: 'Small group luxury guided tour of Antalya including Kaleiçi Old Town, Düden Waterfalls, boat trip, and cable car.',
+  provider: { '@type': 'TravelAgency', name: SITE.name, url: SITE.url },
+  touristType: 'Guided City Tour',
+  offers: { '@type': 'Offer', priceCurrency: 'EUR', availability: 'https://schema.org/InStock' },
+};
+
+const itinerary = [
+  { time: '09:00', title: 'Hotel Pickup', desc: 'Private or small-group pickup from your hotel in a climate-controlled vehicle.' },
+  { time: '09:30', title: 'Kaleiçi Old Town', desc: 'Walk through Hadrian\'s Gate, explore cobblestone streets, visit the Yivli Minare, and discover Ottoman-era architecture with your guide.' },
+  { time: '11:00', title: 'Antalya Marina & Boat Trip', desc: 'Board a traditional Turkish boat for a scenic cruise along the Antalya coastline, with views of the cliffs, waterfalls, and Old Town from the sea.' },
+  { time: '12:30', title: 'Düden Waterfalls', desc: 'Visit the spectacular Düden Waterfalls, where the Düden River plunges into the Mediterranean from a cliff. Capture stunning photos from the viewing platforms.' },
+  { time: '13:30', title: 'Lunch Break', desc: 'Enjoy a traditional Turkish lunch at a local restaurant (included in premium packages).' },
+  { time: '15:00', title: 'Tünektepe Cable Car', desc: 'Ride the cable car to the summit of Tünektepe Hill (618m) for panoramic views of Antalya city, the Mediterranean, and the Taurus Mountains.' },
+  { time: '16:30', title: 'Return to Hotel', desc: 'Comfortable transfer back to your hotel with optional drop-off at Kaleiçi for independent exploration.' },
+];
+---
+
+<Layout title={title} description={description} schema={[breadcrumbSchema, tourSchema]} canonical="/antalya-city-tour-with-guide/">
+  <section class="relative flex min-h-[50vh] items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src={heroImage} alt="Historic Kaleiçi district in Antalya" class="h-full w-full object-cover" fetchpriority="high" width="1920" height="1080" />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-950/90 via-primary-950/70 to-primary-950/40"></div>
+    </div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 py-16 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-primary-200 backdrop-blur-sm">
+          Guided City Tour
+        </span>
+        <h1 class="mt-6 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+          Antalya City Tour with Professional Live Guide
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-primary-100">
+          Discover 2,000 years of history in a single day. Explore the ancient streets of Kaleiçi,
+          cruise the Mediterranean coast, marvel at Düden Waterfalls, and ride the cable car for
+          panoramic views. Small group luxury with a professional live guide.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <WhatsAppCTA label="Book Your Guided Tour" message="Hello, I want to book an Antalya city tour with a professional guide. Please provide details and pricing." />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'City Tour with Guide', href: '/antalya-city-tour-with-guide/' },
+  ]} />
+
+  <div class="mx-auto max-w-4xl px-4 py-12 lg:px-8">
+    <QuickFacts
+      title="Quick Facts"
+      items={[
+        { label: 'Duration', value: 'Full day (approximately 7-8 hours)' },
+        { label: 'Group size', value: 'Small group (max 12) or private tour' },
+        { label: 'Guide', value: 'Professional licensed live guide (English)' },
+        { label: 'Includes', value: 'Transportation, guide, boat trip, cable car, lunch' },
+        { label: 'Departure', value: 'Daily, year-round (weather permitting)' },
+        { label: 'Difficulty', value: 'Easy, suitable for all fitness levels' },
+      ]}
+    />
+  </div>
+
+  <article class="mx-auto max-w-4xl px-4 pb-12 lg:px-8">
+    <h2 class="font-display text-3xl font-bold text-neutral-900">
+      Why Choose Our Guided Antalya City Tour?
+    </h2>
+    <p class="mt-6 text-lg leading-relaxed text-neutral-700">
+      An <strong>Antalya city tour with professional live guide</strong> is the most enriching way
+      to experience this ancient Mediterranean city. While many visitors wander the streets of
+      Kaleiçi on their own, a knowledgeable guide transforms stone walls and ruins into vivid
+      stories of Roman emperors, Byzantine bishops, Seljuk sultans, and Ottoman merchants. Our
+      guides are licensed by the Turkish Ministry of Tourism and specialize in English-language
+      narration, ensuring you catch every historical detail and cultural nuance.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      We emphasize the <strong>"Small Group Luxury"</strong> experience, limiting our group sizes
+      to a maximum of 12 participants. This ensures personal attention from your guide, the ability
+      to ask questions freely, and a comfortable pace that suits everyone. For those who prefer
+      complete exclusivity, we also offer private tours tailored to your interests, whether that
+      means extra time at archaeological sites, a focus on photography, or a culinary exploration
+      of Antalya\'s food scene.
+    </p>
+
+    <div class="my-8 overflow-hidden rounded-2xl shadow-lg">
+      <img src={oldTownImage} alt="Antalya harbor and Kaleiçi historic district" class="w-full object-cover" loading="lazy" width="800" height="400" />
+    </div>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Tour Itinerary
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      Our comprehensive city tour covers Antalya\'s most iconic attractions in a single,
+      well-paced day. The itinerary is carefully designed to balance historical exploration with
+      natural beauty and leisure time.
+    </p>
+
+    <div class="mt-8 space-y-4">
+      {itinerary.map((stop) => (
+        <div class="flex gap-6 rounded-2xl border border-neutral-200 p-5">
+          <div class="flex-shrink-0">
+            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-primary-100 text-sm font-bold text-primary-700">
+              {stop.time}
+            </div>
+          </div>
+          <div>
+            <h3 class="font-display text-lg font-semibold text-neutral-900">{stop.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-neutral-600">{stop.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Exploring Kaleiçi: Antalya\'s Old Town
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      Kaleiçi, meaning "inside the castle" in Turkish, is the historic heart of Antalya. This
+      UNESCO-recognized district is enclosed by ancient Roman and Byzantine walls and entered
+      through the magnificent Hadrian\'s Gate, built in 130 AD to commemorate the Emperor
+      Hadrian\'s visit. Inside, a maze of cobblestone streets leads past restored Ottoman houses,
+      boutique hotels, and hidden courtyards. Your guide will lead you to the Yivli Minare
+      (Fluted Minaret), the symbol of Antalya, the Kesik Minare (Broken Minaret), and the Kara
+      Mescit, revealing layers of history from Roman temples to Byzantine churches to Ottoman
+      mosques.
+    </p>
+
+    <div class="my-8 overflow-hidden rounded-2xl shadow-lg">
+      <img src={tourImage} alt="Tourists exploring historic sites" class="w-full object-cover" loading="lazy" width="800" height="400" />
+    </div>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Düden Waterfalls: Nature\'s Spectacle
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      The Düden Waterfalls are one of Antalya\'s most spectacular natural attractions. The Upper
+      Düden Falls cascade through a limestone park with caves, picnic areas, and walking trails.
+      The Lower Düden Falls, where the river plunges directly into the Mediterranean from a
+      40-meter cliff, are best viewed from our boat trip or from the cliff-side park. On windy
+      days, the mist from the falls creates rainbows over the sea, making for unforgettable
+      photography.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Tünektepe Cable Car: Panoramic Views
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      The Tünektepe Teleferik (cable car) takes you from sea level to the summit of Tünektepe Hill
+      at 618 meters. The 10-minute ride offers breathtaking views that become even more
+      spectacular at the top, where a panoramic terrace reveals the entire city of Antalya, the
+      Mediterranean coastline stretching to the horizon, and the snow-capped peaks of the Taurus
+      Mountains. The summit café is the perfect spot for a Turkish tea while taking in the view.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      What\'s Included
+    </h2>
+    <ul class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+      {['Professional licensed English-speaking guide', 'Air-conditioned transportation', 'Boat trip along the coastline', 'Tünektepe cable car ticket', 'Traditional Turkish lunch', 'Hotel pickup and drop-off', 'All entrance fees', 'Small group guarantee (max 12)'].map((item) => (
+        <li class="flex items-start gap-3 rounded-lg bg-neutral-50 px-4 py-3">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+          <span class="text-sm text-neutral-700">{item}</span>
+        </li>
+      ))}
+    </ul>
+
+    <div class="mt-12 rounded-2xl bg-primary-50 p-8 text-center">
+      <h3 class="font-display text-2xl font-bold text-neutral-900">
+        Book Your Antalya City Tour
+      </h3>
+      <p class="mt-4 text-base text-neutral-600">
+        Small group and private tours available daily. Contact us on WhatsApp for pricing,
+        availability, and custom itineraries.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <WhatsAppCTA label="Book Your Guided Tour on WhatsApp" message="Hello, I want to book an Antalya city tour with a professional live guide. Please provide pricing and availability." />
+      </div>
+    </div>
+  </article>
+</Layout>

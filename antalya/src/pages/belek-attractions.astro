@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import WhatsAppCTA from '../components/WhatsAppCTA.astro';
+import QuickFacts from '../components/QuickFacts.astro';
+import { SITE } from '../data/site';
+
+const heroImage = 'https://images.pexels.com/photos/8476048/pexels-photo-8476048.jpeg?auto=compress&cs=tinysrgb&w=1920';
+const ruinsImage = 'https://images.pexels.com/photos/27384318/pexels-photo-27384318.jpeg?auto=compress&cs=tinysrgb&w=800';
+
+const title = 'Belek Attractions | Top Things to Do in Belek, Antalya | Tours Antalya';
+const description = 'Discover the top attractions in Belek, Antalya: Aspendos Roman theater, Perge ancient city, championship golf courses, Köprülü Canyon, and Belek beaches.';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Belek Attractions', item: `${SITE.url}/belek-attractions/` },
+  ],
+};
+
+const attractions = [
+  { name: 'Aspendos Roman Theater', type: 'Ancient Ruins', desc: 'The best-preserved Roman theater in the world, built in 155 AD. Still hosts opera and ballet performances during the annual Aspendos Festival. Capacity: 15,000 spectators.' },
+  { name: 'Perge Ancient City', type: 'Archaeological Site', desc: 'Extensive ruins of an ancient Greco-Roman city featuring a colonnaded street, Roman baths, stadium, and agora. One of the most significant archaeological sites in Turkey.' },
+  { name: 'Championship Golf Courses', type: 'Sports', desc: '15+ world-class golf courses designed by legends like Colin Montgomerie, Sir Nick Faldo, and Ian Poulter. Host of the Turkish Airlines Open on the European Tour.' },
+  { name: 'Köprülü Canyon National Park', type: 'Nature & Adventure', desc: 'Dramatic canyon with white-water rafting on the Köprüçay River, hiking trails through pine forests, and the historic Roman Oluk Bridge spanning the gorge.' },
+  { name: 'Belek Blue Flag Beaches', type: 'Beach', desc: 'Pristine sandy beaches backed by pine forests with Blue Flag certification for water quality and facilities. Most resorts offer direct beach access.' },
+  { name: 'The Land of Legends Theme Park', type: 'Family Entertainment', desc: 'A massive entertainment complex with water slides, roller coasters, a shopping avenue, and the Kingdom of Light show. Perfect for families with children.' },
+  { name: 'Antalya Golf Club', type: 'Golf', desc: 'Two 18-hole championship courses (The Sultan and The Pasha) set within pine forests. Suitable for all skill levels with a golf academy on site.' },
+  { name: 'Garden of Tolerance', type: 'Cultural', desc: 'A unique interfaith site in Belek featuring a mosque, church, and synagogue side by side, symbolizing religious harmony in the region.' },
+];
+---
+
+<Layout title={title} description={description} schema={[breadcrumbSchema]} canonical="/belek-attractions/">
+  <section class="relative flex min-h-[45vh] items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src={heroImage} alt="Ancient Roman theater in Antalya region" class="h-full w-full object-cover" fetchpriority="high" width="1920" height="1080" />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-950/90 via-primary-950/70 to-primary-950/40"></div>
+    </div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 py-16 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-primary-200 backdrop-blur-sm">
+          Belek Attractions
+        </span>
+        <h1 class="mt-6 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+          Top Things to Do in Belek
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-primary-100">
+          From the world\'s best-preserved Roman theater to championship golf courses and
+          white-water rafting, Belek offers a remarkable range of attractions beyond its luxury
+          resorts.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <WhatsAppCTA label="Book a Belek Tour" message="Hello, I want to book a tour or activity in Belek, Antalya. Please provide options and pricing." />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Belek Attractions', href: '/belek-attractions/' },
+  ]} />
+
+  <div class="mx-auto max-w-4xl px-4 py-12 lg:px-8">
+    <QuickFacts
+      title="Quick Facts"
+      items={[
+        { label: 'Top attraction', value: 'Aspendos Roman Theater (UNESCO candidate)' },
+        { label: 'Golf courses', value: '15+ championship courses' },
+        { label: 'Adventure', value: 'Köprülü Canyon white-water rafting' },
+        { label: 'Family fun', value: 'The Land of Legends Theme Park' },
+        { label: 'Ancient sites', value: 'Aspendos, Perge, Side within 30 min' },
+        { label: 'Best season', value: 'April-June and September-November' },
+      ]}
+    />
+  </div>
+
+  <article class="mx-auto max-w-4xl px-4 pb-8 lg:px-8">
+    <h2 class="font-display text-3xl font-bold text-neutral-900">
+      Explore Belek Beyond the Beach
+    </h2>
+    <p class="mt-6 text-lg leading-relaxed text-neutral-700">
+      Belek is far more than a golf and beach destination. The area sits amid some of Turkey\'s
+      richest archaeological heritage, with the ancient cities of Aspendos and Perge just minutes
+      away. The Köprülü Canyon National Park offers adventure sports in a stunning natural
+      setting, while The Land of Legends theme park provides world-class family entertainment.
+      Whether you are a history enthusiast, an adventure seeker, a golf lover, or a family with
+      children, Belek has attractions that will make your holiday unforgettable.
+    </p>
+    <div class="my-8 overflow-hidden rounded-2xl shadow-lg">
+      <img src={ruinsImage} alt="Ancient amphitheater ruins in Side near Belek" class="w-full object-cover" loading="lazy" width="800" height="400" />
+    </div>
+  </article>
+
+  <section class="mx-auto max-w-7xl px-4 pb-12 lg:px-8">
+    <h2 class="font-display text-3xl font-bold text-neutral-900">Top Attractions in Belek</h2>
+    <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {attractions.map((attr) => (
+        <div class="rounded-2xl border border-neutral-200 p-6 transition-shadow hover:shadow-lg">
+          <span class="rounded-full bg-primary-50 px-3 py-1 text-xs font-medium text-primary-700">{attr.type}</span>
+          <h3 class="mt-3 font-display text-lg font-bold text-neutral-900">{attr.name}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-neutral-600">{attr.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+      <a href="/belek-hotels/" class="group rounded-2xl border border-primary-200 bg-primary-50 p-6 text-center transition-all hover:shadow-lg">
+        <h3 class="font-display text-lg font-bold text-primary-700">Book a Hotel in Belek</h3>
+        <p class="mt-2 text-sm text-neutral-600">5-star golf and spa resorts</p>
+      </a>
+      <a href="/antalya-city-tour-with-guide/" class="group rounded-2xl border border-neutral-200 p-6 text-center transition-all hover:shadow-lg">
+        <h3 class="font-display text-lg font-bold text-neutral-900 group-hover:text-primary-600">Guided Tours with Professional Guide</h3>
+        <p class="mt-2 text-sm text-neutral-500">Aspendos, Perge, and more</p>
+      </a>
+    </div>
+
+    <div class="mt-12 rounded-2xl bg-primary-50 p-8 text-center">
+      <h3 class="font-display text-2xl font-bold text-neutral-900">Plan Your Belek Adventure</h3>
+      <p class="mt-4 text-base text-neutral-600">Book tours, golf tee times, and excursions via WhatsApp. Our local experts are available 24/7.</p>
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <WhatsAppCTA label="Book Belek Activities" message="Hello, I want to book attractions and activities in Belek, Antalya. Please provide options." />
+      </div>
+    </div>
+  </section>
+</Layout>

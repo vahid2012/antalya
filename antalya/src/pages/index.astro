@@ -1,0 +1,508 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WhatsAppCTA from '../components/WhatsAppCTA.astro';
+import QuickFacts from '../components/QuickFacts.astro';
+import { SITE, HOTELS, waLink } from '../data/site';
+
+const heroImage = 'https://images.pexels.com/photos/37752541/pexels-photo-37752541.jpeg?auto=compress&cs=tinysrgb&w=1920';
+const hotelImage = 'https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=800';
+const beachImage = 'https://images.pexels.com/photos/15417847/pexels-photo-15417847.jpeg?auto=compress&cs=tinysrgb&w=800';
+const harborImage = 'https://images.pexels.com/photos/6979377/pexels-photo-6979377.jpeg?auto=compress&cs=tinysrgb&w=800';
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TravelAgency',
+  name: SITE.name,
+  url: SITE.url,
+  description: SITE.description,
+  areaServed: 'Antalya, Turkey',
+  telephone: `+${SITE.whatsappNumber}`,
+  email: SITE.email,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Antalya',
+    addressCountry: 'TR',
+  },
+  sameAs: [],
+};
+
+const services = [
+  {
+    title: 'Luxury Hotels',
+    description: 'Book the top 10 five-star resorts in Antalya with exclusive rates and VIP amenities.',
+    image: hotelImage,
+    href: '/hotels/',
+    icon: 'M3 21h18M3 7v14M21 7v14M6 21V11h12v10M9 9h2M13 9h2',
+  },
+  {
+    title: 'VIP Airport Transfers',
+    description: 'Private Mercedes V-Class transfers from Antalya Airport to your hotel with meet & greet.',
+    image: 'https://images.pexels.com/photos/17455633/pexels-photo-17455633.jpeg?auto=compress&cs=tinysrgb&w=800',
+    href: '/antalya-airport-transfer/',
+    icon: 'M5 17h14M5 17a2 2 0 01-2-2V8a2 2 0 012-2h14a2 2 0 012 2v7a2 2 0 01-2 2M5 17v2a1 1 0 001 1h2a1 1 0 001-1v-2M15 17v2a1 1 0 001 1h2a1 1 0 001-1v-2',
+  },
+  {
+    title: 'Guided City Tours',
+    description: 'Explore Kaleiçi Old Town, Düden Waterfalls, and more with professional live guides.',
+    image: 'https://images.pexels.com/photos/36511581/pexels-photo-36511581.jpeg?auto=compress&cs=tinysrgb&w=800',
+    href: '/antalya-city-tour-with-guide/',
+    icon: 'M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7zM12 9a2 2 0 100 4 2 2 0 000-4z',
+  },
+  {
+    title: 'Nightlife & Disco',
+    description: 'VIP table reservations at Antalya\'s hottest clubs, beach bars, and rooftop venues.',
+    image: 'https://images.pexels.com/photos/9005458/pexels-photo-9005458.jpeg?auto=compress&cs=tinysrgb&w=800',
+    href: '/antalya-nightlife-disco/',
+    icon: 'M9 18V5l12-2v13M9 18a3 3 0 11-6 0 3 3 0 016 0zM21 16a3 3 0 11-6 0 3 3 0 016 0z',
+  },
+  {
+    title: 'Business & MICE Travel',
+    description: 'Corporate retreats, conferences, and incentive trips in Antalya\'s world-class venues.',
+    image: 'https://images.pexels.com/photos/9275222/pexels-photo-9275222.jpeg?auto=compress&cs=tinysrgb&w=800',
+    href: '/antalya-business-tourism/',
+    icon: 'M3 21h18M5 21V7l8-4v18M19 21V11l-6-4',
+  },
+  {
+    title: 'Voyage & Yacht Tours',
+    description: 'Private yacht charters, sunset sails, and boat trips along the stunning Turquoise Coast.',
+    image: 'https://images.pexels.com/photos/15564489/pexels-photo-15564489.jpeg?auto=compress&cs=tinysrgb&w=800',
+    href: '/antalya-voyage-tour/',
+    icon: 'M3 18h18M3 18l3-10h12l3 10M5 18v3h2v-3M17 18v3h2v-3M8 8h8',
+  },
+  {
+    title: 'Real Estate & Investment',
+    description: 'Buy luxury villas, apartments, and investment properties in Antalya with full legal support.',
+    image: 'https://images.pexels.com/photos/19119702/pexels-photo-19119702.jpeg?auto=compress&cs=tinysrgb&w=800',
+    href: '/antalya-real-estate/',
+    icon: 'M3 12l9-9 9 9M5 10v10h14V10',
+  },
+  {
+    title: 'Lara Hotels',
+    description: 'Five-star beachfront resorts in Lara with direct sea access, water parks, and nightlife.',
+    image: 'https://images.pexels.com/photos/37752930/pexels-photo-37752930.jpeg?auto=compress&cs=tinysrgb&w=800',
+    href: '/lara-hotels/',
+    icon: 'M3 21h18M3 7v14M21 7v14M6 21V11h12v10M9 9h2M13 9h2',
+  },
+  {
+    title: 'Cooperate With Us',
+    description: 'Partner with us for hotel bookings, transfers, tours, and MICE services in Antalya.',
+    image: 'https://images.pexels.com/photos/33175650/pexels-photo-33175650.jpeg?auto=compress&cs=tinysrgb&w=800',
+    href: '/cooperate-with-us/',
+    icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75',
+  },
+];
+
+const title = 'Premier Antalya Tourism & Business Travel Services | Tours Antalya';
+const description = 'Book luxury hotels, VIP airport transfers, guided city tours, and nightlife experiences in Antalya, Turkey. Premium travel agency for business and leisure travelers.';
+---
+
+<Layout title={title} description={description} schema={organizationSchema} image={heroImage} type="website">
+  <!-- Hero Section -->
+  <section class="relative flex min-h-[85vh] items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img
+        src={heroImage}
+        alt="Aerial view of Antalya coastline with turquoise Mediterranean waters"
+        class="h-full w-full object-cover"
+        fetchpriority="high"
+        width="1920"
+        height="1080"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-950/90 via-primary-950/70 to-primary-950/40"></div>
+    </div>
+
+    <div class="relative z-10 mx-auto max-w-7xl px-4 py-20 lg:px-8">
+      <div class="max-w-2xl animate-fade-in-up">
+        <span class="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-primary-200 backdrop-blur-sm">
+          Antalya, Turkey &middot; Premium Travel Services
+        </span>
+        <h1 class="mt-6 font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
+          Experience Antalya<br />
+          <span class="bg-gradient-to-r from-primary-300 to-accent-300 bg-clip-text text-transparent">
+            Like Never Before
+          </span>
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-primary-100">
+          Your premier partner for luxury tourism and business travel in Antalya. From five-star
+          hotel reservations to VIP airport transfers, guided city tours, and exclusive nightlife
+          access, we craft unforgettable experiences on the Turkish Riviera.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <WhatsAppCTA label="Book Your Trip Now" variant="primary" />
+          <a
+            href="/hotels/"
+            class="inline-flex items-center gap-2 rounded-xl border-2 border-white/30 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/10"
+          >
+            Explore Hotels
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Facts -->
+  <div class="mx-auto max-w-7xl px-4 lg:px-8">
+    <QuickFacts
+      title="Quick Facts About Antalya"
+      items={[
+        { label: 'Location', value: 'Mediterranean coast, southern Turkey' },
+        { label: 'Annual visitors', value: 'Over 15 million international tourists' },
+        { label: 'Hotel establishments', value: '2,583 licensed hotels with 647,628 beds' },
+        { label: 'Airport', value: 'Antalya Airport (AYT), 3 terminals' },
+        { label: 'Best travel season', value: 'April to October for beach; year-round for business' },
+        { label: 'Currency', value: 'Turkish Lira (TRY), EUR & USD widely accepted' },
+      ]}
+    />
+  </div>
+
+  <!-- Services Overview -->
+  <section class="mx-auto max-w-7xl px-4 py-16 lg:px-8">
+    <div class="text-center">
+      <h2 class="font-display text-3xl font-bold text-neutral-900 sm:text-4xl">
+        Our VIP Services in Antalya
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-neutral-600">
+        We offer a comprehensive suite of premium travel services designed for discerning leisure
+        and business travelers visiting the Antalya region.
+      </p>
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((service) => (
+        <a
+          href={service.href}
+          class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-all hover:shadow-xl hover:shadow-primary-100/50"
+        >
+          <div class="relative h-48 overflow-hidden">
+            <img
+              src={service.image}
+              alt={service.title}
+              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+              loading="lazy"
+              width="400"
+              height="200"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary-950/60 to-transparent"></div>
+            <div class="absolute bottom-3 left-3">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d={service.icon} />
+              </svg>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-display text-xl font-semibold text-neutral-900 group-hover:text-primary-600">
+              {service.title}
+            </h3>
+            <p class="mt-2 text-sm leading-relaxed text-neutral-600">{service.description}</p>
+            <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary-600">
+              Learn more
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform group-hover:translate-x-1">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Why Antalya Section -->
+  <section class="bg-neutral-50 py-16">
+    <div class="mx-auto max-w-7xl px-4 lg:px-8">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
+        <div>
+          <h2 class="font-display text-3xl font-bold text-neutral-900 sm:text-4xl">
+            Why Antalya for Business & Leisure Travel?
+          </h2>
+          <p class="mt-6 text-lg leading-relaxed text-neutral-600">
+            Antalya is the crown jewel of the Turkish Riviera, a city where ancient history meets
+            modern luxury along 640 kilometers of pristine Mediterranean coastline. As Turkey's
+            tourism capital, Antalya welcomed over 15 million international visitors in recent
+            years, making it one of the most visited cities on the planet. The region boasts 2,583
+            hotel establishments with 647,628 beds, ranging from intimate boutique properties in
+            Kaleiçi to sprawling five-star all-inclusive resorts in Belek, Lara, and Side.
+          </p>
+          <p class="mt-4 text-base leading-relaxed text-neutral-600">
+            For business travelers, Antalya has emerged as a global hub for MICE tourism, hosting
+            landmark events such as the NATO Summit, COP31, and the EXPO 2016. The city's
+            world-class convention centers, championship golf courses, and luxury resorts provide
+            the perfect backdrop for corporate retreats, incentive trips, and international
+            conferences. Whether you are planning an <strong>Antalya summer vacation business
+            travel</strong> combination or a pure leisure getaway, the city offers an unparalleled
+            blend of professional infrastructure and natural beauty.
+          </p>
+          <div class="mt-8 grid grid-cols-2 gap-4">
+            <div class="rounded-xl bg-white p-5 shadow-sm">
+              <div class="text-3xl font-bold text-primary-600">640km</div>
+              <div class="mt-1 text-sm text-neutral-500">Mediterranean coastline</div>
+            </div>
+            <div class="rounded-xl bg-white p-5 shadow-sm">
+              <div class="text-3xl font-bold text-primary-600">15M+</div>
+              <div class="mt-1 text-sm text-neutral-500">Annual international visitors</div>
+            </div>
+            <div class="rounded-xl bg-white p-5 shadow-sm">
+              <div class="text-3xl font-bold text-primary-600">300+</div>
+              <div class="mt-1 text-sm text-neutral-500">Sunny days per year</div>
+            </div>
+            <div class="rounded-xl bg-white p-5 shadow-sm">
+              <div class="text-3xl font-bold text-primary-600">15+</div>
+              <div class="mt-1 text-sm text-neutral-500">Championship golf courses</div>
+            </div>
+          </div>
+        </div>
+        <div class="relative">
+          <img
+            src={harborImage}
+            alt="Antalya harbor with historic Kaleiçi district and boats"
+            class="rounded-2xl shadow-xl"
+            loading="lazy"
+            width="600"
+            height="400"
+          />
+          <div class="absolute -bottom-6 -left-6 hidden rounded-2xl bg-white p-6 shadow-xl sm:block">
+            <div class="flex items-center gap-3">
+              <div class="flex h-12 w-12 items-center justify-center rounded-full bg-success-100">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <div>
+                <div class="font-bold text-neutral-900">Verified & Trusted</div>
+                <div class="text-sm text-neutral-500">Local experts since day one</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Top Experiences -->
+  <section class="mx-auto max-w-7xl px-4 py-16 lg:px-8">
+    <h2 class="font-display text-3xl font-bold text-neutral-900 sm:text-4xl">Top Experiences in Antalya</h2>
+    <p class="mt-4 max-w-2xl text-lg text-neutral-600">
+      Discover the most sought-after experiences that make Antalya a world-class destination for
+      travelers seeking both adventure and relaxation.
+    </p>
+
+    <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+      <article class="flex flex-col gap-4 rounded-2xl border border-neutral-200 p-6 transition-shadow hover:shadow-lg">
+        <h3 class="font-display text-xl font-semibold text-neutral-900">
+          Explore the Ancient Charm of Kaleiçi Old Town
+        </h3>
+        <p class="text-base leading-relaxed text-neutral-600">
+          The historic heart of Antalya, Kaleiçi, is a labyrinth of cobblestone streets lined with
+          Ottoman-era houses, Roman-era Hadrian's Gate, and charming boutique hotels. A
+          <strong> Konyaaltı beach guesthouse Antalya</strong> experience or a <strong>Kaleiçi
+          boutique hotel booking Antalya</strong> trip offers travelers an authentic stay within
+          walking distance of the marina, ancient walls, and the iconic Yivli Minare. Our guided
+          city tours take you deep into this UNESCO-recognized district with professional live
+          guides who bring 2,000 years of history to life.
+        </p>
+      </article>
+
+      <article class="flex flex-col gap-4 rounded-2xl border border-neutral-200 p-6 transition-shadow hover:shadow-lg">
+        <h3 class="font-display text-xl font-semibold text-neutral-900">
+          Tee Off at Belek's Championship Golf Courses
+        </h3>
+        <p class="text-base leading-relaxed text-neutral-600">
+          Belek is home to more than 15 championship golf courses designed by legends like Colin
+          Montgomerie and Sir Nick Faldo. A <strong>Belek golf hotel and spa package</strong> lets
+          you combine world-class rounds with luxury spa treatments and fine dining. Courses such
+          as the Regnum Carya Golf & Resort Club and the Montgomerie Maxx Royal host international
+          tournaments and offer immaculate fairways set against pine forests and the Mediterranean
+          Sea. We arrange tee times, golf academy sessions, and equipment rentals for all skill
+          levels.
+        </p>
+      </article>
+
+      <article class="flex flex-col gap-4 rounded-2xl border border-neutral-200 p-6 transition-shadow hover:shadow-lg">
+        <h3 class="font-display text-xl font-semibold text-neutral-900">
+          Indulge in Lara's All-Inclusive Luxury
+        </h3>
+        <p class="text-base leading-relaxed text-neutral-600">
+          Lara Beach, just 10 kilometers from Antalya Airport, is famous for its long stretch of
+          golden sand and cluster of five-star all-inclusive resorts. A <strong>Lara
+          all-inclusive resort with nightclub access</strong> or a <strong>5-star hotel
+          reservation in Lara region directly by the sea</strong> gives you direct beach access,
+          water parks, multiple à la carte restaurants, and nightly entertainment. Mardan Palace
+          and Concorde De Luxe Resort are among the standout properties offering the ultimate
+          beachfront luxury experience.
+        </p>
+      </article>
+
+      <article class="flex flex-col gap-4 rounded-2xl border border-neutral-200 p-6 transition-shadow hover:shadow-lg">
+        <h3 class="font-display text-xl font-semibold text-neutral-900">
+          Private VIP Transfer from Antalya Airport to Belek
+        </h3>
+        <p class="text-base leading-relaxed text-neutral-600">
+          Start your Antalya journey in style with a <strong>private VIP transfer from Antalya
+          Airport to Belek</strong>. Our fleet of Mercedes V-Class vehicles offers leather
+          interiors, climate control, Wi-Fi, and complimentary refreshments. Our professional
+          chauffeurs provide a meet-and-greet service at the arrivals hall, track your flight for
+          delays, and ensure a smooth, air-conditioned ride to your hotel in Belek, Lara, Side, or
+          Kemer. Fixed prices with no hidden fees, available 24/7.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Top Hotels Preview -->
+  <section class="bg-neutral-50 py-16">
+    <div class="mx-auto max-w-7xl px-4 lg:px-8">
+      <div class="flex items-end justify-between">
+        <div>
+          <h2 class="font-display text-3xl font-bold text-neutral-900 sm:text-4xl">
+            Top 10 Luxury Hotels in Antalya
+          </h2>
+          <p class="mt-4 max-w-2xl text-lg text-neutral-600">
+            Handpicked five-star resorts offering the finest accommodation experiences on the
+            Turkish Riviera.
+          </p>
+        </div>
+        <a href="/hotels/" class="hidden whitespace-nowrap text-sm font-semibold text-primary-600 hover:text-primary-700 sm:block">
+          View all hotels &rarr;
+        </a>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
+        {HOTELS.slice(0, 5).map((hotel) => (
+          <a
+            href={`/hotels/${hotel.slug}/`}
+            class="group overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:shadow-xl"
+          >
+            <div class="relative h-40 overflow-hidden">
+              <img
+                src={`https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=400`}
+                alt={hotel.name}
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
+                width="400"
+                height="200"
+              />
+              <div class="absolute top-2 right-2 rounded-full bg-gold-500 px-2 py-0.5 text-xs font-bold text-white">
+                {hotel.starRating}★
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-neutral-900 group-hover:text-primary-600">{hotel.name}</h3>
+              <p class="mt-1 text-xs text-neutral-500">{hotel.region}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-8 text-center">
+        <a
+          href="/hotels/"
+          class="inline-flex items-center gap-2 rounded-xl border-2 border-primary-200 px-6 py-3 text-sm font-semibold text-primary-600 transition-all hover:bg-primary-50"
+        >
+          See All 10 Hotels
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Signals -->
+  <section class="mx-auto max-w-7xl px-4 py-16 lg:px-8">
+    <div class="text-center">
+      <h2 class="font-display text-3xl font-bold text-neutral-900 sm:text-4xl">
+        Trusted by Travelers Worldwide
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-neutral-600">
+        Our commitment to excellence has earned us the trust of thousands of leisure and business
+        travelers across the globe.
+      </p>
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="text-center">
+        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary-100">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="#0369a1"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <div class="mt-4 text-2xl font-bold text-neutral-900">4.9/5</div>
+        <div class="text-sm text-neutral-500">Average customer rating</div>
+      </div>
+      <div class="text-center">
+        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-success-100">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div class="mt-4 text-2xl font-bold text-neutral-900">10,000+</div>
+        <div class="text-sm text-neutral-500">Happy travelers served</div>
+      </div>
+      <div class="text-center">
+        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gold-100">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#b8962f" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="mt-4 text-2xl font-bold text-neutral-900">50+</div>
+        <div class="text-sm text-neutral-500">Partner luxury hotels</div>
+      </div>
+      <div class="text-center">
+        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent-100">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d43d18" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="mt-4 text-2xl font-bold text-neutral-900">24/7</div>
+        <div class="text-sm text-neutral-500">WhatsApp support</div>
+      </div>
+    </div>
+
+    <!-- Reviews -->
+    <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div class="rounded-2xl border border-neutral-200 p-6">
+        <div class="flex gap-1 text-gold-500">
+          {[1,2,3,4,5].map(() => <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>)}
+        </div>
+        <p class="mt-4 text-sm leading-relaxed text-neutral-600">
+          "Outstanding service from start to finish. The VIP airport transfer was seamless, and
+          our hotel booking at Maxx Royal Belek exceeded all expectations. Highly recommended!"
+        </p>
+        <p class="mt-4 text-sm font-semibold text-neutral-900">Sarah M., United Kingdom</p>
+      </div>
+      <div class="rounded-2xl border border-neutral-200 p-6">
+        <div class="flex gap-1 text-gold-500">
+          {[1,2,3,4,5].map(() => <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>)}
+        </div>
+        <p class="mt-4 text-sm leading-relaxed text-neutral-600">
+          "We organized a corporate retreat for 40 executives in Antalya. Everything from
+          conference facilities to golf and nightlife was perfectly arranged. True
+          professionals."
+        </p>
+        <p class="mt-4 text-sm font-semibold text-neutral-900">Ahmad R., United Arab Emirates</p>
+      </div>
+      <div class="rounded-2xl border border-neutral-200 p-6">
+        <div class="flex gap-1 text-gold-500">
+          {[1,2,3,4,5].map(() => <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>)}
+        </div>
+        <p class="mt-4 text-sm leading-relaxed text-neutral-600">
+          "The guided city tour of Kaleiçi was the highlight of our trip. Our guide was incredibly
+          knowledgeable and the small group format made it feel personal. Will book again!"
+        </p>
+        <p class="mt-4 text-sm font-semibold text-neutral-900">Elena K., Germany</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="relative overflow-hidden bg-primary-900 py-16">
+    <div class="absolute inset-0 opacity-20">
+      <img src={beachImage} alt="" class="h-full w-full object-cover" loading="lazy" width="1920" height="400" />
+    </div>
+    <div class="relative z-10 mx-auto max-w-4xl px-4 text-center lg:px-8">
+      <h2 class="font-display text-3xl font-bold text-white sm:text-4xl">
+        Ready to Plan Your Antalya Experience?
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-primary-100">
+        Contact us on WhatsApp for instant booking, personalized recommendations, and exclusive
+        rates. Our local experts are available 24/7 to help you plan the perfect trip.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <WhatsAppCTA label="Chat on WhatsApp Now" variant="primary" />
+        <a
+          href="/antalya-business-tourism/"
+          class="inline-flex items-center gap-2 rounded-xl border-2 border-white/30 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-white/10"
+        >
+          Business Travel Services
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

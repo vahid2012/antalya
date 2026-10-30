@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import WhatsAppCTA from '../components/WhatsAppCTA.astro';
+import QuickFacts from '../components/QuickFacts.astro';
+import { SITE } from '../data/site';
+
+const heroImage = 'https://images.pexels.com/photos/37406075/pexels-photo-37406075.jpeg?auto=compress&cs=tinysrgb&w=1920';
+const promenadeImage = 'https://images.pexels.com/photos/32977129/pexels-photo-32977129.jpeg?auto=compress&cs=tinysrgb&w=800';
+
+const title = 'Kemer Attractions | Top Things to Do in Kemer, Antalya | Tours Antalya';
+const description = 'Discover top attractions in Kemer, Antalya: Olympos ancient city, Phaselis ruins, Tahtalı Mountain cable car, Chimaera eternal flames, and Göynük Canyon.';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Kemer Attractions', item: `${SITE.url}/kemer-attractions/` },
+  ],
+};
+
+const attractions = [
+  { name: 'Phaselis Ancient City', type: 'Ancient Ruins', desc: 'Ruins of a 7th-century BC Lycian city within a national park, featuring three Roman harbors, an aqueduct, and agora ruins set among pine trees reaching the sea. Swim in the same bays as ancient traders.' },
+  { name: 'Olympos Ancient City & Beach', type: 'Archaeological & Beach', desc: 'Ruins of an ancient Lycian city hidden in a valley of laurel trees, leading to a stunning beach. Nearby treehouse accommodations offer a bohemian atmosphere.' },
+  { name: 'Tahtalı Mountain Cable Car', type: 'Nature & Views', desc: 'Ride the Olympos Teleferik to the summit of Tahtalı Mountain (2,365m) for panoramic views of the coastline, Mediterranean Sea, and Taurus Mountains. One of the longest cable cars in the world.' },
+  { name: 'Chimaera (Yanartaş)', type: 'Natural Wonder', desc: 'Eternal flames that have been burning for millennia on Mount Olympos, fueled by natural gas seeping from the rock. Best visited at dusk for a magical experience. The mythological origin of the fire-breathing monster.' },
+  { name: 'Göynük Canyon', type: 'Nature & Adventure', desc: 'A dramatic canyon with a glass-bottomed sky bridge, zip lines, and hiking trails through stunning natural scenery. Cool off in the freshwater pools.' },
+  { name: 'Kemer Marina & Promenade', type: 'Leisure', desc: 'A modern yacht marina surrounded by shops, restaurants, and a palm-lined promenade. Perfect for evening strolls, dining, and yacht-watching.' },
+  { name: 'Moonlight Beach & Park', type: 'Beach & Park', desc: 'A scenic beach park with pine trees, walking paths, and a pebble beach with clear water. Evening light shows and outdoor concerts in summer.' },
+  { name: 'Aura Club & Club Inferno', type: 'Nightlife', desc: 'Two of Turkey\'s most legendary open-air nightclubs, hosting massive beach parties with international DJs, laser shows, and pyrotechnics during summer.' },
+];
+---
+
+<Layout title={title} description={description} schema={[breadcrumbSchema]} canonical="/kemer-attractions/">
+  <section class="relative flex min-h-[45vh] items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src={heroImage} alt="Olympos Beach and Tahtali Mountain in Kemer" class="h-full w-full object-cover" fetchpriority="high" width="1920" height="1080" />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-950/90 via-primary-950/70 to-primary-950/40"></div>
+    </div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 py-16 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-primary-200 backdrop-blur-sm">
+          Kemer Attractions
+        </span>
+        <h1 class="mt-6 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+          Top Things to Do in Kemer
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-primary-100">
+          Where the Taurus Mountains meet the Mediterranean, Kemer offers ancient ruins in pine
+          forests, eternal flames, cable car summits, canyon adventures, and legendary nightlife.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <WhatsAppCTA label="Book a Kemer Tour" message="Hello, I want to book a tour or activity in Kemer, Antalya. Please provide options and pricing." />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Kemer Attractions', href: '/kemer-attractions/' },
+  ]} />
+
+  <div class="mx-auto max-w-4xl px-4 py-12 lg:px-8">
+    <QuickFacts
+      title="Quick Facts"
+      items={[
+        { label: 'Top attraction', value: 'Phaselis Ancient City & beaches' },
+        { label: 'Must-see', value: 'Chimaera eternal flames at sunset' },
+        { label: 'Adventure', value: 'Göynük Canyon zip line and sky bridge' },
+        { label: 'Views', value: 'Tahtalı Mountain cable car (2,365m)' },
+        { label: 'Nightlife', value: 'Aura Club and Club Inferno' },
+        { label: 'Best season', value: 'May to October for all activities' },
+      ]}
+    />
+  </div>
+
+  <article class="mx-auto max-w-4xl px-4 pb-8 lg:px-8">
+    <h2 class="font-display text-3xl font-bold text-neutral-900">
+      Kemer: Nature, History, and Nightlife
+    </h2>
+    <p class="mt-6 text-lg leading-relaxed text-neutral-700">
+      Kemer\'s unique geography, where the Taurus Mountains rise directly from the Mediterranean
+      coast, creates a setting unlike anywhere else on the Turkish Riviera. Pine forests cover
+      the mountainsides, hiding ancient Lycian cities and natural wonders within their shade.
+      The Olympos Beydağları National Park protects much of this landscape, ensuring that the
+      ancient ruins of Phaselis and Olympos, the eternal flames of the Chimaera, and the
+      pristine beaches remain unspoiled.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      For adventure seekers, the Göynük Canyon offers zip lining and hiking through dramatic
+      scenery, while the Tahtalı Mountain cable car provides the longest cable car ride in
+      Turkey. In the evenings, Kemer\'s marina promenade comes alive with restaurants and shops,
+      and the legendary Aura Club and Club Inferno host some of the Mediterranean\'s wildest
+      beach parties.
+    </p>
+    <div class="my-8 overflow-hidden rounded-2xl shadow-lg">
+      <img src={promenadeImage} alt="Palm-lined promenade along Mediterranean beach" class="w-full object-cover" loading="lazy" width="800" height="400" />
+    </div>
+  </article>
+
+  <section class="mx-auto max-w-7xl px-4 pb-12 lg:px-8">
+    <h2 class="font-display text-3xl font-bold text-neutral-900">Top Attractions in Kemer</h2>
+    <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {attractions.map((attr) => (
+        <div class="rounded-2xl border border-neutral-200 p-6 transition-shadow hover:shadow-lg">
+          <span class="rounded-full bg-primary-50 px-3 py-1 text-xs font-medium text-primary-700">{attr.type}</span>
+          <h3 class="mt-3 font-display text-lg font-bold text-neutral-900">{attr.name}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-neutral-600">{attr.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+      <a href="/kemer-hotels/" class="group rounded-2xl border border-primary-200 bg-primary-50 p-6 text-center transition-all hover:shadow-lg">
+        <h3 class="font-display text-lg font-bold text-primary-700">Book a Hotel in Kemer</h3>
+        <p class="mt-2 text-sm text-neutral-600">5-star mountain and beach resorts</p>
+      </a>
+      <a href="/antalya-nightlife-disco/" class="group rounded-2xl border border-neutral-200 p-6 text-center transition-all hover:shadow-lg">
+        <h3 class="font-display text-lg font-bold text-neutral-900 group-hover:text-primary-600">Kemer Nightlife & VIP Tables</h3>
+        <p class="mt-2 text-sm text-neutral-500">Aura Club, Club Inferno, beach parties</p>
+      </a>
+    </div>
+
+    <div class="mt-12 rounded-2xl bg-primary-50 p-8 text-center">
+      <h3 class="font-display text-2xl font-bold text-neutral-900">Explore Kemer with Us</h3>
+      <p class="mt-4 text-base text-neutral-600">Book tours, cable car tickets, canyon adventures, and VIP nightlife via WhatsApp.</p>
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <WhatsAppCTA label="Book Kemer Activities" message="Hello, I want to book attractions and activities in Kemer, Antalya. Please provide options." />
+      </div>
+    </div>
+  </section>
+</Layout>

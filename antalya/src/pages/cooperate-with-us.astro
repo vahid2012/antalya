@@ -1,0 +1,219 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import WhatsAppCTA from '../components/WhatsAppCTA.astro';
+import QuickFacts from '../components/QuickFacts.astro';
+import { SITE, waLink } from '../data/site';
+
+const heroImage = 'https://images.pexels.com/photos/33175650/pexels-photo-33175650.jpeg?auto=compress&cs=tinysrgb&w=1920';
+const handshakeImage = 'https://images.pexels.com/photos/4963359/pexels-photo-4963359.jpeg?auto=compress&cs=tinysrgb&w=800';
+const meetingImage = 'https://images.pexels.com/photos/6918529/pexels-photo-6918529.jpeg?auto=compress&cs=tinysrgb&w=800';
+
+const title = 'Cooperate With Us | Travel Agency Partnership | Tours Antalya';
+const description = 'Partner with Tours Antalya for Antalya travel services. Travel agencies, tour operators, and businesses can cooperate with us for hotel bookings, transfers, tours, and MICE services.';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Cooperate With Us', item: `${SITE.url}/cooperate-with-us/` },
+  ],
+};
+
+const partnerTypes = [
+  { name: 'Travel Agencies', desc: 'Offer Antalya packages to your clients without maintaining a local presence. We handle hotel bookings, transfers, tours, and on-the-ground support.' },
+  { name: 'Tour Operators', desc: 'Add Antalya destinations to your tour programs. We provide ground handling, guides, transportation, and activity arrangements.' },
+  { name: 'Corporate Clients', desc: 'Companies seeking regular business travel support in Antalya: conference venues, corporate retreats, airport transfers, and group bookings.' },
+  { name: 'Influencers & Content Creators', desc: 'Travel bloggers and social media influencers: we arrange hosted stays, tours, and experiences in exchange for content collaboration.' },
+  { name: 'Event Planners', desc: 'Wedding planners, conference organizers, and event managers needing local venue sourcing, logistics, and hospitality management in Antalya.' },
+  { name: 'Real Estate Agents', desc: 'Property professionals whose clients need accommodation, transport, and local support during property viewing trips to Antalya.' },
+];
+
+const benefits = [
+  { title: 'Local Expertise', desc: 'We are based in Antalya with deep relationships with hotels, venues, and service providers across the region.' },
+  { title: 'Competitive Commission', desc: 'Attractive commission structures for partners who refer clients or resell our services. Transparent and timely payouts.' },
+  { title: 'White-Label Service', desc: 'We operate under your brand. Your clients see your agency name, while we handle all the ground operations seamlessly.' },
+  { title: '24/7 Support', desc: 'Round-the-clock WhatsApp support for both partners and their clients. We are always available to resolve issues.' },
+  { title: 'Instant Confirmation', desc: 'Fast turnaround on hotel availability, pricing, and booking confirmations. No long wait times.' },
+  { title: 'Multi-Service Packages', desc: 'Hotels, transfers, tours, nightlife, MICE, and real estate – all available through a single point of contact.' },
+];
+
+const process = [
+  { title: 'Initial Contact', desc: 'Send us a WhatsApp message introducing your business and partnership interests. We respond within hours.' },
+  { title: 'Partnership Discussion', desc: 'We schedule a call to discuss commission rates, service scope, operational procedures, and mutual expectations.' },
+  { title: 'Agreement', desc: 'We formalize the partnership with a simple agreement outlining terms, commission structure, and responsibilities.' },
+  { title: 'Onboarding', desc: 'You receive our service catalog, rate sheets, booking procedures, and a dedicated WhatsApp contact for instant communication.' },
+  { title: 'Start Cooperating', desc: 'Begin referring clients and booking services. We handle the rest while you earn commission.' },
+];
+---
+
+<Layout title={title} description={description} schema={[breadcrumbSchema]} canonical="/cooperate-with-us/">
+  <section class="relative flex min-h-[50vh] items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src={heroImage} alt="Business partnership handshake" class="h-full w-full object-cover" fetchpriority="high" width="1920" height="1080" />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-950/90 via-primary-950/70 to-primary-950/40"></div>
+    </div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 py-16 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-primary-200 backdrop-blur-sm">
+          Partnership & Cooperation
+        </span>
+        <h1 class="mt-6 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+          Cooperate With Us
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-primary-100">
+          Partner with Antalya\'s premier travel and tourism agency. Whether you are a travel
+          agency, tour operator, corporate client, or content creator, we provide the local
+          expertise, ground operations, and commission structures to grow your business in the
+          Turkish Riviera.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <WhatsAppCTA label="Start a Partnership" message="Hello, I am interested in cooperating with Tours Antalya. I would like to discuss a partnership opportunity." />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Cooperate With Us', href: '/cooperate-with-us/' },
+  ]} />
+
+  <div class="mx-auto max-w-4xl px-4 py-12 lg:px-8">
+    <QuickFacts
+      title="Key Takeaways"
+      items={[
+        { label: 'Partnership types', value: 'Agencies, operators, corporate, influencers, event planners' },
+        { label: 'Commission', value: 'Competitive, transparent, timely payouts' },
+        { label: 'Service area', value: 'All of Antalya province (hotels, tours, transfers, MICE)' },
+        { label: 'Support', value: '24/7 WhatsApp, dedicated contact person' },
+        { label: 'White-label', value: 'Available – we operate under your brand' },
+        { label: 'Onboarding', value: 'Fast – start cooperating within 48 hours' },
+      ]}
+    />
+  </div>
+
+  <article class="mx-auto max-w-4xl px-4 pb-12 lg:px-8">
+    <h2 class="font-display text-3xl font-bold text-neutral-900">
+      Why Partner With Tours Antalya?
+    </h2>
+    <p class="mt-6 text-lg leading-relaxed text-neutral-700">
+      Antalya is one of the world\'s most visited tourism destinations, with over 15 million
+      international arrivals annually. But succeeding in this market requires local knowledge,
+      established relationships, and on-the-ground operational capacity. That\'s where we come
+      in. Tours Antalya has built a comprehensive service network across the Antalya region,
+      covering luxury hotel bookings, VIP airport transfers, guided city tours, nightlife VIP
+      reservations, MICE events, real estate, and yacht charters.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      By cooperating with us, you gain access to this entire service infrastructure without
+      needing to maintain a local office or team in Antalya. You focus on sales and client
+      relationships; we handle operations, logistics, and ground support. It\'s a win-win
+      partnership model designed for mutual growth.
+    </p>
+
+    <div class="my-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div class="overflow-hidden rounded-2xl shadow-lg">
+        <img src={handshakeImage} alt="Business handshake partnership" class="w-full object-cover" loading="lazy" width="400" height="250" />
+      </div>
+      <div class="overflow-hidden rounded-2xl shadow-lg">
+        <img src={meetingImage} alt="Business meeting discussion" class="w-full object-cover" loading="lazy" width="400" height="250" />
+      </div>
+    </div>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Who Can Partner With Us?
+    </h2>
+    <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+      {partnerTypes.map((partner) => (
+        <div class="rounded-2xl border border-neutral-200 p-6">
+          <h3 class="font-display text-lg font-semibold text-neutral-900">{partner.name}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-neutral-600">{partner.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Partnership Benefits
+    </h2>
+    <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+      {benefits.map((benefit) => (
+        <div class="flex items-start gap-4 rounded-xl border border-neutral-200 p-5">
+          <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary-100">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-neutral-900">{benefit.title}</h3>
+            <p class="mt-1 text-sm text-neutral-600">{benefit.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Services Available to Partners
+    </h2>
+    <ul class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+      {[
+        'Luxury hotel bookings (10+ partner resorts)',
+        'VIP airport transfers (Mercedes V-Class)',
+        'Guided city tours with professional guides',
+        'Nightlife VIP table reservations',
+        'MICE and corporate event planning',
+        'Yacht and boat trip arrangements',
+        'Real estate property consultation',
+        'Golf tee time bookings in Belek',
+        'Restaurant and activity reservations',
+        'Ground handling for tour groups',
+      ].map((item) => (
+        <li class="flex items-start gap-3 rounded-lg bg-neutral-50 px-4 py-3">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+          <span class="text-sm text-neutral-700">{item}</span>
+        </li>
+      ))}
+    </ul>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      How to Start Cooperating
+    </h2>
+    <div class="mt-8 space-y-4">
+      {process.map((step, index) => (
+        <div class="flex gap-6 rounded-2xl border border-neutral-200 p-5">
+          <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary-900 text-lg font-bold text-white">
+            {index + 1}
+          </div>
+          <div>
+            <h3 class="font-display text-lg font-semibold text-neutral-900">{step.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-neutral-600">{step.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Our Network & References
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      We cooperate with travel agencies and tour operators across Europe, the Middle East, and
+      Central Asia. Our partners benefit from our extensive network of hotel relationships,
+      transportation providers, and local service suppliers. We also maintain cross-destination
+      partnerships, including <a href="https://tourviza.ir/تور-آنتالیا-از-ارومیه/" class="text-primary-600 underline hover:text-primary-700">تور آنتالیا از ارومیه</a> connections for Persian-speaking markets and
+      <a href="https://www.year2026.ir/tours/christmas-armenia-yerevan" class="text-primary-600 underline hover:text-primary-700">Christmas Armenia Yerevan tour</a> packages for multi-destination itineraries. For partners whose clients need pre-departure accommodation, we recommend <a href="https://www.hotelurmia.ir/" class="text-primary-600 underline hover:text-primary-700">Hotel Urmia</a>.
+    </p>
+
+    <div class="mt-12 rounded-2xl bg-primary-900 p-8 text-center">
+      <h3 class="font-display text-2xl font-bold text-white">
+        Let\'s Build Something Together
+      </h3>
+      <p class="mt-4 text-base text-primary-100">
+        Whether you are a small agency looking to add Antalya to your portfolio or a large
+        operator needing a reliable ground handler, we are ready to cooperate. Contact us on
+        WhatsApp to start the conversation.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <WhatsAppCTA label="Start a Partnership" message="Hello, I represent a travel agency/business and I am interested in cooperating with Tours Antalya. Please provide partnership details." variant="white" />
+      </div>
+    </div>
+  </article>
+</Layout>

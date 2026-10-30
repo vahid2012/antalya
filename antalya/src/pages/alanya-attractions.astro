@@ -1,0 +1,135 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import WhatsAppCTA from '../components/WhatsAppCTA.astro';
+import QuickFacts from '../components/QuickFacts.astro';
+import { SITE } from '../data/site';
+
+const heroImage = 'https://images.pexels.com/photos/16510391/pexels-photo-16510391.jpeg?auto=compress&cs=tinysrgb&w=1920';
+const coastImage = 'https://images.pexels.com/photos/12944616/pexels-photo-12944616.jpeg?auto=compress&cs=tinysrgb&w=800';
+
+const title = 'Alanya Attractions | Top Things to Do in Alanya, Antalya | Tours Antalya';
+const description = 'Discover top attractions in Alanya: Alanya Castle, Cleopatra Beach, Damlatas Cave, Dim River, Red Tower, and Sapadere Canyon. Book tours via WhatsApp.';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Alanya Attractions', item: `${SITE.url}/alanya-attractions/` },
+  ],
+};
+
+const attractions = [
+  { name: 'Alanya Castle (Alanya Kalesi)', type: 'Historic Site', desc: 'A 13th-century Seljuk fortress crowning the peninsula above Alanya. Walk the fortified walls, visit the Süleymaniye Mosque, and enjoy panoramic views of the city and sea. Accessible by foot, car, or cable car.' },
+  { name: 'Cleopatra Beach', type: 'Beach', desc: 'Alanya\'s most famous beach, named after the Egyptian queen who allegedly swam here. Fine golden sand, clear shallow water, and Blue Flag status. Water sports and beach clubs available.' },
+  { name: 'Red Tower (Kızılkule)', type: 'Historic Monument', desc: 'A 33-meter octagonal tower built in 1226 by the Seljuk Sultan Alaeddin Keykubat. Now a museum showcasing the region\'s maritime history. Located at the harbor entrance.' },
+  { name: 'Damlatas Cave', type: 'Natural Wonder', desc: 'Discovered in 1948, this stunning stalactite cave maintains a constant 22°C and 95% humidity. Believed to benefit asthma and respiratory conditions. Located near Cleopatra Beach.' },
+  { name: 'Dim River & Valley', type: 'Nature & Leisure', desc: 'A cool mountain river 15 minutes from Alanya with riverside restaurants where you can sit with your feet in the water. Picnic areas, swimming spots, and a dam lake for paddle boating.' },
+  { name: 'Alanya Cable Car', type: 'Views & Transport', desc: 'A cable car connecting the beachfront to Alanya Castle, offering aerial views of the peninsula, harbor, and coastline. A quick and scenic way to reach the castle.' },
+  { name: 'Sapadere Canyon', type: 'Nature & Adventure', desc: 'A hidden canyon 40 minutes from Alanya with a wooden walkway through dramatic gorges, waterfalls, and natural pools. Cool and refreshing even in peak summer.' },
+  { name: 'Alanya Harbor & Boat Tours', type: 'Leisure', desc: 'The historic harbor with fishing boats, yachts, and pirate-ship replicas offering coastal tours. Visit sea caves, pirate caves, and swim in secluded bays along the peninsula.' },
+];
+---
+
+<Layout title={title} description={description} schema={[breadcrumbSchema]} canonical="/alanya-attractions/">
+  <section class="relative flex min-h-[45vh] items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src={heroImage} alt="Alanya beach with sun loungers and mountain backdrop" class="h-full w-full object-cover" fetchpriority="high" width="1920" height="1080" />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-950/90 via-primary-950/70 to-primary-950/40"></div>
+    </div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 py-16 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-primary-200 backdrop-blur-sm">
+          Alanya Attractions
+        </span>
+        <h1 class="mt-6 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+          Top Things to Do in Alanya
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-primary-100">
+          From a medieval hilltop castle to Cleopatra\'s legendary beach, cool mountain rivers,
+          and hidden canyons, Alanya blends history, nature, and beach culture on the eastern
+          Turkish Riviera.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <WhatsAppCTA label="Book an Alanya Tour" message="Hello, I want to book attractions and activities in Alanya, Antalya. Please provide options and pricing." />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alanya Attractions', href: '/alanya-attractions/' },
+  ]} />
+
+  <div class="mx-auto max-w-4xl px-4 py-12 lg:px-8">
+    <QuickFacts
+      title="Quick Facts"
+      items={[
+        { label: 'Top attraction', value: 'Alanya Castle & Red Tower' },
+        { label: 'Best beach', value: 'Cleopatra Beach (Blue Flag)' },
+        { label: 'Natural wonder', value: 'Damlatas Cave & Sapadere Canyon' },
+        { label: 'Cool escape', value: 'Dim River riverside dining' },
+        { label: 'Boat tours', value: 'Pirate ship tours from harbor' },
+        { label: 'Best season', value: 'May to October for beach; year-round for sites' },
+      ]}
+    />
+  </div>
+
+  <article class="mx-auto max-w-4xl px-4 pb-8 lg:px-8">
+    <h2 class="font-display text-3xl font-bold text-neutral-900">
+      Alanya: Where History Meets the Beach
+    </h2>
+    <p class="mt-6 text-lg leading-relaxed text-neutral-700">
+      Alanya is a city where medieval history and Mediterranean beach culture coexist
+      effortlessly. The 13th-century Seljuk castle watches over the town from its peninsula
+      throne, while below, Cleopatra Beach stretches with its legendary golden sand. The harbor,
+      once a naval shipyard, now launches pirate-ship replica boat tours to sea caves along the
+      dramatic coastline. Just inland, the Dim River offers a cool escape from the summer heat,
+      and the Sapadere Canyon reveals a hidden world of waterfalls and gorges.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      Alanya\'s attractions are more affordable and accessible than those in the western resort
+      areas, making it an excellent value destination for families, couples, and independent
+      travelers. The town\'s compact layout means most attractions are within walking distance or
+      a short bus ride, and the warm, shallow waters make it ideal for swimming and water sports
+      throughout the long season.
+    </p>
+    <div class="my-8 overflow-hidden rounded-2xl shadow-lg">
+      <img src={coastImage} alt="Alanya coast with turquoise sea" class="w-full object-cover" loading="lazy" width="800" height="400" />
+    </div>
+  </article>
+
+  <section class="mx-auto max-w-7xl px-4 pb-12 lg:px-8">
+    <h2 class="font-display text-3xl font-bold text-neutral-900">Top Attractions in Alanya</h2>
+    <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {attractions.map((attr) => (
+        <div class="rounded-2xl border border-neutral-200 p-6 transition-shadow hover:shadow-lg">
+          <span class="rounded-full bg-primary-50 px-3 py-1 text-xs font-medium text-primary-700">{attr.type}</span>
+          <h3 class="mt-3 font-display text-lg font-bold text-neutral-900">{attr.name}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-neutral-600">{attr.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+      <a href="/alanya-hotels/" class="group rounded-2xl border border-primary-200 bg-primary-50 p-6 text-center transition-all hover:shadow-lg">
+        <h3 class="font-display text-lg font-bold text-primary-700">Book a Hotel in Alanya</h3>
+        <p class="mt-2 text-sm text-neutral-600">5-star beachfront all-inclusive resorts</p>
+      </a>
+      <a href="/antalya-voyage-tour/" class="group rounded-2xl border border-neutral-200 p-6 text-center transition-all hover:shadow-lg">
+        <h3 class="font-display text-lg font-bold text-neutral-900 group-hover:text-primary-600">Boat Tours from Alanya</h3>
+        <p class="mt-2 text-sm text-neutral-500">Pirate caves, coastal sailing, swimming stops</p>
+      </a>
+    </div>
+
+    <div class="mt-12 rounded-2xl bg-primary-50 p-8 text-center">
+      <h3 class="font-display text-2xl font-bold text-neutral-900">Explore Alanya with Us</h3>
+      <p class="mt-4 text-base text-neutral-600">Book castle tours, boat trips, canyon adventures, and more via WhatsApp.</p>
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <WhatsAppCTA label="Book Alanya Activities" message="Hello, I want to book attractions and activities in Alanya, Antalya. Please provide options." />
+      </div>
+    </div>
+  </section>
+</Layout>

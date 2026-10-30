@@ -1,0 +1,202 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import WhatsAppCTA from '../../components/WhatsAppCTA.astro';
+import QuickFacts from '../../components/QuickFacts.astro';
+import { SITE } from '../../data/site';
+import { BLOG_POSTS } from '../../data/blog';
+
+const post = BLOG_POSTS[1];
+const title = `${post.title} | Tours Antalya Blog`;
+const description = post.description;
+const heroImage = post.image;
+
+const blogSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.title,
+  description: post.description,
+  datePublished: post.date,
+  author: { '@type': 'Organization', name: post.author },
+  publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+  url: `${SITE.url}/blog/${post.slug}/`,
+  image: post.image,
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE.url}/blog/` },
+    { '@type': 'ListItem', position: 3, name: post.title, item: `${SITE.url}/blog/${post.slug}/` },
+  ],
+};
+
+const otherPosts = BLOG_POSTS.filter((p) => p.slug !== post.slug);
+---
+
+<Layout title={title} description={description} schema={[blogSchema, breadcrumbSchema]} canonical={`/blog/${post.slug}/`} type="article" image={heroImage}>
+  <section class="relative flex min-h-[40vh] items-end overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src={heroImage} alt={post.title} class="h-full w-full object-cover" fetchpriority="high" width="1920" height="1080" />
+      <div class="absolute inset-0 bg-gradient-to-t from-primary-950/95 via-primary-950/60 to-primary-950/30"></div>
+    </div>
+    <div class="relative z-10 mx-auto max-w-4xl px-4 py-16 lg:px-8">
+      <span class="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-primary-200 backdrop-blur-sm">
+        {post.category}
+      </span>
+      <h1 class="mt-6 font-display text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+        {post.title}
+      </h1>
+      <p class="mt-4 text-base text-primary-200">
+        {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} &middot; {post.readTime} &middot; By {post.author}
+      </p>
+    </div>
+  </section>
+
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Blog', href: '/blog/' },
+    { name: post.title, href: `/blog/${post.slug}/` },
+  ]} />
+
+  <div class="mx-auto max-w-4xl px-4 py-12 lg:px-8">
+    <QuickFacts
+      title="Key Takeaways"
+      items={[
+        { label: 'Airport code', value: 'AYT (Antalya International Airport)' },
+        { label: 'Terminals', value: 'Terminal 1 (International), Terminal 2 (International), Domestic Terminal' },
+        { label: 'Distance to city', value: '12 km to Antalya city center' },
+        { label: 'Annual passengers', value: 'Over 25 million (peak summer)' },
+        { label: 'Transfer options', value: 'VIP private transfer, taxi, HAVAŞ bus, car rental' },
+        { label: 'VIP transfer time', value: '15 min to Lara, 30 min to Belek, 60 min to Side' },
+      ]}
+    />
+  </div>
+
+  <article class="mx-auto max-w-4xl px-4 pb-12 lg:px-8">
+    <h2 class="font-display text-3xl font-bold text-neutral-900">Overview of Antalya Airport (AYT)</h2>
+    <p class="mt-6 text-lg leading-relaxed text-neutral-700">
+      Antalya Airport (AYT) is Turkey\'s second-busiest airport after Istanbul Airport, handling
+      over 25 million passengers annually during peak years. Located just 12 kilometers east of
+      Antalya city center, the airport serves as the primary gateway for millions of tourists
+      visiting the Turkish Riviera. The airport operates three terminals: Terminal 1 and Terminal 2
+      for international flights, and a dedicated Domestic Terminal. During the summer high season,
+      Antalya Airport is one of the busiest airports in the Mediterranean region, with hundreds of
+      daily flights connecting Antalya to cities across Europe, the Middle East, and Asia.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">Terminal 1: Main International Terminal</h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      Terminal 1 is the oldest and largest international terminal at Antalya Airport, handling a
+      significant portion of European charter and scheduled flights. The terminal features a
+      modern arrivals hall with duty-free shopping, currency exchange offices, car rental desks,
+      and café facilities. Departures include check-in counters, passport control, a large duty-
+      free area, restaurants, and VIP lounges. Terminal 1 serves many major European airlines,
+      including Turkish Airlines, Lufthansa, and British Airways, as well as numerous charter
+      carriers.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      Facilities at Terminal 1 include free Wi-Fi throughout the terminal, ATMs and currency
+      exchange, a medical center, prayer rooms, baby care facilities, and lost luggage services.
+      The duty-free shop offers a wide range of Turkish and international products, including
+      leather goods, jewelry, cosmetics, and local delicacies. Several restaurants and cafés
+      serve Turkish and international cuisine, with both airside and landside options.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">Terminal 2: Secondary International Terminal</h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      Terminal 2 was built to handle the overflow of international traffic during the peak summer
+      season. It primarily serves charter and seasonal flights from European tour operators. The
+      terminal\'s facilities are similar to Terminal 1, with check-in counters, passport control,
+      duty-free shopping, and dining options. Terminal 2 is generally less congested than Terminal
+      1 during peak hours, making for a smoother transit experience.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      It is important to check which terminal your airline uses before arriving at the airport,
+      as Terminal 1 and Terminal 2 are separate buildings. Most airlines specify the terminal on
+      boarding passes and flight confirmations. Our VIP transfer service includes terminal-
+      specific drop-off and pickup, so your driver will know exactly where to meet you.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">Domestic Terminal</h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      The Domestic Terminal handles all flights within Turkey, connecting Antalya to Istanbul,
+      Ankara, Izmir, and other major Turkish cities. Turkish Airlines, Pegasus Airlines, and
+      SunExpress operate frequent domestic flights, particularly during the summer season when
+      demand peaks. The domestic terminal is smaller and more compact than the international
+      terminals, with streamlined check-in and security processes.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      Facilities include a small duty-free shop, a café, and a VIP lounge. The domestic terminal
+      is conveniently located between Terminal 1 and Terminal 2, making connections between
+      domestic and international flights relatively straightforward. If you are connecting from a
+      domestic flight to an international departure, allow at least 90 minutes for the transfer
+      between terminals and security processing.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">Getting to and from Antalya Airport</h2>
+    <h3 class="mt-8 font-display text-xl font-semibold text-neutral-900">VIP Private Transfer</h3>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      The most comfortable and reliable option is a <strong>private VIP transfer from Antalya
+      Airport</strong> to your hotel. Our Mercedes V-Class vehicles with professional chauffeurs
+      provide meet & greet service, flight tracking, and fixed prices. This is the recommended
+      option for families, business travelers, and anyone who values comfort and reliability.
+      Transfer times: 15 minutes to Lara, 30 minutes to Belek, 45 minutes to Kemer, 60 minutes to
+      Side.
+    </p>
+    <h3 class="mt-8 font-display text-xl font-semibold text-neutral-900">Taxi</h3>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      Taxis are available outside all terminals 24/7. Fares are metered, but it is advisable to
+      agree on a price before departure, especially for longer distances like Side or Alanya.
+      Taxi queues can be long during peak arrival times, and vehicles may not always meet
+      international comfort standards.
+    </p>
+    <h3 class="mt-8 font-display text-xl font-semibold text-neutral-900">HAVAŞ Airport Bus</h3>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      HAVAŞ operates shuttle buses from the airport to Antalya city center (Migros/Antalya
+      Bulvarı) with departures synchronized with flight arrivals. The journey takes approximately
+      30-40 minutes and costs significantly less than a taxi. However, the bus does not go to
+      resort areas like Belek or Side, so additional transportation is needed from the city center.
+    </p>
+    <h3 class="mt-8 font-display text-xl font-semibold text-neutral-900">Car Rental</h3>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      Major car rental companies (Avis, Hertz, Europcar, Enterprise) have desks at all terminals.
+      Driving in Antalya is generally straightforward, with well-maintained roads to major resort
+      areas. An international driving permit is recommended.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">Airport Tips</h2>
+    <ul class="mt-6 space-y-3 text-base text-neutral-700">
+      <li class="flex items-start gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg><span>Arrive at least 2 hours before international departures and 1.5 hours before domestic flights during peak season.</span></li>
+      <li class="flex items-start gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg><span>Purchase a Turkish e-Visa online before travel if required for your nationality. Many European citizens can enter visa-free for up to 90 days.</span></li>
+      <li class="flex items-start gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg><span>Currency exchange rates at the airport are generally less favorable than in the city. Exchange a small amount for immediate needs and use ATMs or exchange offices in town for larger amounts.</span></li>
+      <li class="flex items-start gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg><span>Free Wi-Fi is available throughout all terminals. Select the "Free Antalya Airport Wi-Fi" network.</span></li>
+      <li class="flex items-start gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg><span>For VIP transfers, book in advance via WhatsApp to ensure your driver is waiting when you land.</span></li>
+    </ul>
+
+    <div class="mt-12 rounded-2xl bg-primary-50 p-8 text-center">
+      <h3 class="font-display text-2xl font-bold text-neutral-900">Book Your Airport Transfer</h3>
+      <p class="mt-4 text-base text-neutral-600">Skip the taxi queue. Book a VIP Mercedes V-Class transfer via WhatsApp.</p>
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <WhatsAppCTA label="Get Transfer Quote" message="Hello, I need a VIP airport transfer from Antalya Airport. Please provide a quote." />
+      </div>
+    </div>
+
+    <h2 class="mt-16 font-display text-2xl font-bold text-neutral-900">More Articles</h2>
+    <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+      {otherPosts.map((p) => (
+        <a href={`/blog/${p.slug}/`} class="group flex items-center gap-4 rounded-xl border border-neutral-200 p-4 transition-all hover:shadow-md">
+          <div class="h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
+            <img src={p.image} alt={p.title} class="h-full w-full object-cover" loading="lazy" width="200" height="200" />
+          </div>
+          <div>
+            <h3 class="font-semibold text-neutral-900 group-hover:text-primary-600">{p.title}</h3>
+            <p class="text-sm text-neutral-500">{p.readTime}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </article>
+</Layout>

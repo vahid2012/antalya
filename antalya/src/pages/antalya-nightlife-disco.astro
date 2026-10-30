@@ -1,0 +1,211 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import WhatsAppCTA from '../components/WhatsAppCTA.astro';
+import QuickFacts from '../components/QuickFacts.astro';
+import { SITE, waLink } from '../data/site';
+
+const heroImage = 'https://images.pexels.com/photos/9005458/pexels-photo-9005458.jpeg?auto=compress&cs=tinysrgb&w=1920';
+const clubImage = 'https://images.pexels.com/photos/5191996/pexels-photo-5191996.jpeg?auto=compress&cs=tinysrgb&w=800';
+const partyImage = 'https://images.pexels.com/photos/8448547/pexels-photo-8448547.jpeg?auto=compress&cs=tinysrgb&w=800';
+
+const title = 'Antalya Nightlife & Disco Guide | VIP Table Reservations | Tours Antalya';
+const description = 'Discover Antalya\'s best nightlife: Kaleiçi bars, Lara nightclubs, and Konyaaltı beach clubs. Book VIP tables and disco entry via WhatsApp for Club Ceilo, Club 29, Gaga Club, and more.';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Nightlife & Disco', item: `${SITE.url}/antalya-nightlife-disco/` },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristTrip',
+  name: 'Antalya Nightlife & Disco VIP Experience',
+  description: 'VIP table reservations, nightclub entry, and guided nightlife tours in Antalya, Turkey.',
+  provider: { '@type': 'TravelAgency', name: SITE.name, url: SITE.url },
+  touristType: 'Nightlife & Entertainment',
+};
+
+const venues = [
+  { name: 'Club Ceilo', area: 'Kaleiçi', desc: 'A trendy nightclub in the heart of Kaleiçi Old Town, known for live DJ sets and an energetic crowd. Popular with both locals and tourists.' },
+  { name: 'Club 29 (Marina)', area: 'Kaleiçi Marina', desc: 'An upscale club at Antalya Marina with VIP lounges, international DJs, and spectacular views of the harbor. The go-to spot for premium nightlife.' },
+  { name: 'Gaga Club', area: 'Lara', desc: 'One of Lara\'s biggest nightclubs, featuring multiple dance floors, laser shows, and themed party nights. A favorite among younger crowds and hotel guests.' },
+  { name: 'Aura Club / Club Inferno', area: 'Kemer', desc: 'Located in Kemer, these legendary open-air clubs host some of Antalya\'s wildest beach parties with world-class DJs and spectacular light shows.' },
+];
+---
+
+<Layout title={title} description={description} schema={[breadcrumbSchema, serviceSchema]} canonical="/antalya-nightlife-disco/">
+  <section class="relative flex min-h-[50vh] items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src={heroImage} alt="DJ performing at a nightclub in Antalya" class="h-full w-full object-cover" fetchpriority="high" width="1920" height="1080" />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-950/90 via-primary-950/75 to-primary-950/50"></div>
+    </div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 py-16 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-primary-200 backdrop-blur-sm">
+          Nightlife & Entertainment
+        </span>
+        <h1 class="mt-6 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+          Antalya Nightlife & Disco Guide
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-primary-100">
+          From the historic bars of Kaleiçi to the high-energy nightclubs of Lara and the beach
+          clubs of Konyaaltı, Antalya comes alive after dark. Book VIP tables, disco entry, and
+          guided nightlife tours directly via WhatsApp.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <WhatsAppCTA label="Reserve a VIP Table" message="Hello, I would like to reserve a VIP table at a nightclub in Antalya. Please provide options and pricing." />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Nightlife & Disco', href: '/antalya-nightlife-disco/' },
+  ]} />
+
+  <div class="mx-auto max-w-4xl px-4 py-12 lg:px-8">
+    <QuickFacts
+      title="Key Takeaways"
+      items={[
+        { label: 'Main nightlife areas', value: 'Kaleiçi, Lara, Konyaaltı, Kemer' },
+        { label: 'Top clubs', value: 'Club Ceilo, Club 29, Gaga Club, Aura/Inferno' },
+        { label: 'Peak season', value: 'June to September (peak party season)' },
+        { label: 'Dress code', value: 'Smart casual for most venues; upscale for VIP' },
+        { label: 'Entry fees', value: 'Varies by venue; VIP table packages available' },
+        { label: 'Booking', value: 'VIP tables and entry via WhatsApp' },
+      ]}
+    />
+  </div>
+
+  <article class="mx-auto max-w-4xl px-4 pb-12 lg:px-8">
+    <h2 class="font-display text-3xl font-bold text-neutral-900">
+      Antalya After Dark: A Complete Nightlife Guide
+    </h2>
+    <p class="mt-6 text-lg leading-relaxed text-neutral-700">
+      Antalya\'s nightlife scene is as diverse as its landscape, offering everything from intimate
+      rooftop bars in the historic Old Town to massive open-air nightclubs that draw partygoers
+      from across Europe. Whether you are looking for a relaxed evening with cocktails by the sea
+      or an all-night dance marathon, Antalya has a venue to match your mood. Our VIP nightlife
+      service handles table reservations, club entry, transportation, and even guided bar crawls,
+      ensuring a seamless and memorable night out.
+    </p>
+
+    <div class="my-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div class="overflow-hidden rounded-2xl shadow-lg">
+        <img src={clubImage} alt="Nightclub scene in Antalya" class="w-full object-cover" loading="lazy" width="400" height="250" />
+      </div>
+      <div class="overflow-hidden rounded-2xl shadow-lg">
+        <img src={partyImage} alt="Beach club party in Antalya" class="w-full object-cover" loading="lazy" width="400" height="250" />
+      </div>
+    </div>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Kaleiçi: Historic Old Town Bars
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      The ancient Kaleiçi district transforms after sunset into a charming nightlife destination.
+      Narrow cobblestone streets lined with restored Ottoman houses host a variety of bars, pubs,
+      and live music venues. The atmosphere is intimate and social, with many establishments
+      offering outdoor seating under the stars. <strong>Club Ceilo</strong> is a standout, drawing
+      a trendy crowd with its live DJ sets and vibrant energy. At the marina end of Kaleiçi,
+      <strong>Club 29</strong> offers a more upscale experience with VIP lounges, harbor views,
+      and international DJs spinning until dawn.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      For those seeking a more relaxed evening, Kaleiçi\'s rooftop bars and wine lounges provide
+      the perfect setting for a sunset cocktail. Many bars feature live Turkish music, creating
+      an authentic cultural experience. The district is walkable and safe, with venues open until
+      2:00 AM on weekdays and 4:00 AM on weekends during the high season.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Lara: High-Energy Nightclubs
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      Lara is Antalya\'s nightclub district, home to some of the region\'s largest and most
+      energetic party venues. <strong>Gaga Club</strong> is one of Lara\'s flagship nightclubs,
+      featuring multiple dance floors, state-of-the-art sound systems, laser shows, and themed
+      party nights throughout the week. The club attracts a young, international crowd,
+      particularly guests from the nearby all-inclusive resorts who venture out for a night on
+      the town. A <strong>Lara all-inclusive resort with nightclub access</strong> is an excellent
+      choice for travelers who want resort entertainment and external nightlife options within
+      easy reach.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Konyaaltı: Beach Clubs & Sunset Bars
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      Konyaaltı Beach, with its pebbled shoreline and backdrop of the Beydağları Mountains, offers
+      a more laid-back nightlife scene centered around beach clubs and sunset bars. These venues
+      transform from daytime lounging spots into evening entertainment destinations, with live
+      music, DJ sets, and cocktail specials. The atmosphere is sophisticated and relaxed, ideal
+      for couples and groups looking to enjoy drinks by the sea without the intensity of a
+      nightclub. Many beach clubs also host special events such as full moon parties and sunset
+      sessions during the summer months.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Kemer: Legendary Beach Parties
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      The resort town of Kemer, about 40 kilometers southwest of Antalya, is home to some of the
+      region\'s most legendary nightlife venues. <strong>Aura Club</strong> and
+      <strong>Club Inferno</strong> are iconic open-air clubs that host massive beach parties with
+      world-class DJs, pyrotechnic shows, and spectacular light displays. These venues operate
+      primarily during the summer season and draw crowds from across the Antalya region. We
+      arrange transportation, VIP entry, and table reservations for Kemer\'s nightlife venues.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Top Nightlife Venues in Antalya
+    </h2>
+    <div class="mt-6 space-y-4">
+      {venues.map((venue) => (
+        <div class="rounded-2xl border border-neutral-200 p-6">
+          <div class="flex items-center justify-between">
+            <h3 class="font-display text-xl font-semibold text-neutral-900">{venue.name}</h3>
+            <span class="rounded-full bg-primary-50 px-3 py-1 text-xs font-medium text-primary-700">{venue.area}</span>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-neutral-600">{venue.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      VIP Nightlife Packages
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      Our VIP nightlife packages include reserved table seating with premium bottle service, skip-
+      the-line entry, private transportation to and from your hotel, and a dedicated host who
+      ensures your group\'s seamless access to Antalya\'s top venues. Whether you are celebrating
+      a special occasion, entertaining business clients, or simply want the best night out
+      possible, our team handles every detail.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      We also offer guided bar crawls through Kaleiçi for groups who want to experience multiple
+      venues in one evening, with a local guide who knows the best spots and can navigate the
+      narrow streets of the Old Town. For high-level networking and corporate entertainment, our
+      <a href="https://www.year2026.ir/tours/christmas-armenia-yerevan" class="text-primary-600 underline hover:text-primary-700">Christmas Armenia Yerevan tour</a> partners can arrange cross-destination VIP experiences, and we recommend staying at <a href="https://www.hotelurmia.ir/" class="text-primary-600 underline hover:text-primary-700">Hotel Urmia</a> for pre-departure accommodation.
+    </p>
+
+    <div class="mt-12 rounded-2xl bg-primary-900 p-8 text-center">
+      <h3 class="font-display text-2xl font-bold text-white">
+        Book Your VIP Nightlife Experience
+      </h3>
+      <p class="mt-4 text-base text-primary-100">
+        Reserve VIP tables, nightclub entry, and guided bar crawls in Antalya. Contact us on
+        WhatsApp for instant booking and personalized recommendations.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <WhatsAppCTA label="Reserve VIP Table / Disco Entry" message="Hello, I want to reserve a VIP table or disco entry at a nightclub in Antalya. Please provide options and pricing." variant="white" />
+      </div>
+    </div>
+  </article>
+</Layout>

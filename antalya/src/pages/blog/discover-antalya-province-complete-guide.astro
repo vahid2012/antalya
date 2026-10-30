@@ -1,0 +1,190 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import WhatsAppCTA from '../../components/WhatsAppCTA.astro';
+import QuickFacts from '../../components/QuickFacts.astro';
+import { SITE } from '../../data/site';
+import { BLOG_POSTS } from '../../data/blog';
+
+const post = BLOG_POSTS[0];
+const title = `${post.title} | Tours Antalya Blog`;
+const description = post.description;
+const heroImage = post.image;
+
+const blogSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.title,
+  description: post.description,
+  datePublished: post.date,
+  author: { '@type': 'Organization', name: post.author },
+  publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+  url: `${SITE.url}/blog/${post.slug}/`,
+  image: post.image,
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE.url}/blog/` },
+    { '@type': 'ListItem', position: 3, name: post.title, item: `${SITE.url}/blog/${post.slug}/` },
+  ],
+};
+
+const otherPosts = BLOG_POSTS.filter((p) => p.slug !== post.slug);
+---
+
+<Layout title={title} description={description} schema={[blogSchema, breadcrumbSchema]} canonical={`/blog/${post.slug}/`} type="article" image={heroImage}>
+  <section class="relative flex min-h-[40vh] items-end overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src={heroImage} alt={post.title} class="h-full w-full object-cover" fetchpriority="high" width="1920" height="1080" />
+      <div class="absolute inset-0 bg-gradient-to-t from-primary-950/95 via-primary-950/60 to-primary-950/30"></div>
+    </div>
+    <div class="relative z-10 mx-auto max-w-4xl px-4 py-16 lg:px-8">
+      <span class="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-primary-200 backdrop-blur-sm">
+        {post.category}
+      </span>
+      <h1 class="mt-6 font-display text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+        {post.title}
+      </h1>
+      <p class="mt-4 text-base text-primary-200">
+        {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} &middot; {post.readTime} &middot; By {post.author}
+      </p>
+    </div>
+  </section>
+
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Blog', href: '/blog/' },
+    { name: post.title, href: `/blog/${post.slug}/` },
+  ]} />
+
+  <div class="mx-auto max-w-4xl px-4 py-12 lg:px-8">
+    <QuickFacts
+      title="Key Takeaways"
+      items={[
+        { label: 'Location', value: 'Antalya Province, southern Turkey, Mediterranean coast' },
+        { label: 'Population', value: 'Approximately 2.7 million' },
+        { label: 'Coastline', value: '640 km of Mediterranean shoreline' },
+        { label: 'Climate', value: 'Hot summers, mild winters, 300+ sunny days' },
+        { label: 'History', value: 'Inhabited since Paleolithic era, Roman, Byzantine, Ottoman' },
+        { label: 'Top attractions', value: 'Kaleiçi, Düden Falls, Aspendos, Perge, beaches' },
+      ]}
+    />
+  </div>
+
+  <article class="mx-auto max-w-4xl px-4 pb-12 lg:px-8">
+    <h2 class="font-display text-3xl font-bold text-neutral-900">Introduction to Antalya Province</h2>
+    <p class="mt-6 text-lg leading-relaxed text-neutral-700">
+      Antalya Province is Turkey\'s tourism crown jewel, a vast region stretching along 640
+      kilometers of Mediterranean coastline in the country\'s southwest. With a population of
+      approximately 2.7 million and an annual influx of over 15 million international visitors,
+      Antalya is one of the world\'s most visited tourism destinations. The province encompasses
+      diverse landscapes, from the sun-drenched beaches of Lara and Konyaaltı to the pine-clad
+      mountains of the Taurus range, from the ancient ruins of Perge and Aspendos to the
+      waterfalls of Düden and Kurşunlu. This complete guide covers everything you need to know
+      about Antalya Province: its history, culture, beaches, climate, and top experiences.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">A Journey Through History</h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      Antalya\'s history stretches back to the Paleolithic era, with evidence of human settlement
+      dating back 200,000 years in the Karain Cave. The region has been shaped by successive
+      civilizations: the Lycians, who built rock tombs along the coast; the Persians, who
+      conquered the region in the 6th century BC; Alexander the Great, who passed through in 333
+      BC; the Romans, who built the magnificent cities of Perge, Aspendos, and Side; the
+      Byzantines, who left their mark in churches and fortifications; the Seljuks, who
+      constructed the iconic Yivli Minaret; and the Ottomans, who ruled for nearly 500 years
+      until the foundation of the Turkish Republic in 1923.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      Each civilization left layers of architecture, culture, and cuisine that make Antalya a
+      living museum. The old town of Kaleiçi, with its Roman walls, Ottoman houses, and Seljuk
+      minarets, encapsulates this layered history in a walkable district. The ancient Roman
+      theater at Aspendos, built in the 2nd century AD, remains one of the best-preserved
+      theaters in the world and still hosts performances today. The ruined city of Perge, with
+      its colonnaded streets, Roman baths, and stadium, offers a glimpse into urban life in
+      antiquity.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">Culture & Traditions</h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      Antalya\'s culture reflects its position at the crossroads of Mediterranean and Anatolian
+      civilizations. The local cuisine is a highlight, featuring fresh Mediterranean ingredients,
+      olive oil dishes, grilled meats, and an abundance of seafood. Signature dishes include
+      <em>piyaz</em> (a white bean salad with tahini), <em>şiş köfte</em> (grilled meat skewers),
+      and <em>burnt ice cream</em> (a traditional Turkish dessert). The region is also known for
+      its citrus fruits, pomegranates, and local wines.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      Traditional arts in Antalya include carpet weaving, copper work, and wood carving, all of
+      which can be found in the workshops and bazaars of Kaleiçi. The Antalya Culture Center
+      hosts regular performances of Turkish classical music, folk dancing, and theater. The
+      Aspendos International Opera and Ballet Festival, held annually in the ancient Roman
+      theater, is a unique cultural experience that combines world-class performance with
+      2,000-year-old architecture.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">Beaches of Antalya Province</h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      The beaches of Antalya Province are its most famous attraction, ranging from long sandy
+      stretches to hidden coves accessible only by boat. <strong>Lara Beach</strong>, just east
+      of Antalya city, is a 12-kilometer stretch of golden sand lined with luxury all-inclusive
+      resorts. A <strong>5-star hotel reservation in Lara region directly by the sea</strong>
+      offers direct beach access and stunning sunrise views. <strong>Konyaaltı Beach</strong>, on
+      the city\'s western side, is a pebbled beach with mountain views and a vibrant beach club
+      scene. A <strong>Konyaaltı beach guesthouse Antalya</strong> stay provides a more local and
+      intimate experience.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      Further along the coast, <strong>Belek</strong> is known for its golf resorts and pristine
+      Blue Flag beaches. <strong>Side</strong> offers the unique experience of swimming beside
+      ancient Roman ruins. <strong>Kemer</strong> features dramatic mountain-backed pebbled
+      coves. <strong>Alanya</strong>, at the eastern edge of the province, boasts Cleopatra Beach,
+      said to have been a gift from Mark Antony to the Egyptian queen. Each beach has its own
+      character, and our team can recommend the perfect one based on your preferences.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">Climate & Best Time to Visit</h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      Antalya enjoys a typical Mediterranean climate with hot, dry summers and mild, rainy
+      winters. Summer temperatures (June to September) range from 30°C to 40°C, with sea
+      temperatures reaching 28°C. Spring (April to June) and autumn (September to November) are
+      ideal for sightseeing, with temperatures between 20°C and 30°C and lower humidity. Winter
+      (December to March) sees temperatures of 10°C to 15°C, pleasant for walking and exploring
+      ancient sites without the crowds.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      For beach holidays, the best time is June to September. For city tours and archaeological
+      visits, April to June and September to November offer the most comfortable conditions. For
+      golf, the season runs from September to May when temperatures are moderate. Business
+      travelers will find the region accessible year-round, with the added benefit of lower hotel
+      rates outside the peak summer season.
+    </p>
+
+    <div class="mt-12 rounded-2xl bg-primary-50 p-8 text-center">
+      <h3 class="font-display text-2xl font-bold text-neutral-900">Plan Your Antalya Trip</h3>
+      <p class="mt-4 text-base text-neutral-600">Contact us on WhatsApp for personalized travel advice and bookings.</p>
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <WhatsAppCTA label="Plan Your Trip" />
+      </div>
+    </div>
+
+    <h2 class="mt-16 font-display text-2xl font-bold text-neutral-900">More Articles</h2>
+    <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+      {otherPosts.map((p) => (
+        <a href={`/blog/${p.slug}/`} class="group flex items-center gap-4 rounded-xl border border-neutral-200 p-4 transition-all hover:shadow-md">
+          <div class="h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
+            <img src={p.image} alt={p.title} class="h-full w-full object-cover" loading="lazy" width="200" height="200" />
+          </div>
+          <div>
+            <h3 class="font-semibold text-neutral-900 group-hover:text-primary-600">{p.title}</h3>
+            <p class="text-sm text-neutral-500">{p.readTime}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </article>
+</Layout>

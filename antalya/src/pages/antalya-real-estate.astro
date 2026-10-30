@@ -1,0 +1,204 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import WhatsAppCTA from '../components/WhatsAppCTA.astro';
+import QuickFacts from '../components/QuickFacts.astro';
+import { SITE, waLink } from '../data/site';
+
+const heroImage = 'https://images.pexels.com/photos/19119702/pexels-photo-19119702.jpeg?auto=compress&cs=tinysrgb&w=1920';
+const villaImage = 'https://images.pexels.com/photos/19119701/pexels-photo-19119701.jpeg?auto=compress&cs=tinysrgb&w=800';
+const mansionImage = 'https://images.pexels.com/photos/4083217/pexels-photo-4083217.jpeg?auto=compress&cs=tinysrgb&w=800';
+
+const title = 'Antalya Real Estate & Property Investment Guide | Tours Antalya';
+const description = 'Invest in Antalya real estate: luxury villas, beachfront apartments, and investment properties. Complete property buying guide, legal assistance, and consultation via WhatsApp.';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Real Estate', item: `${SITE.url}/antalya-real-estate/` },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Antalya Real Estate & Property Investment Services',
+  provider: { '@type': 'TravelAgency', name: SITE.name, url: SITE.url },
+  areaServed: 'Antalya, Turkey',
+  description: 'Property investment advisory, villa and apartment sales, legal assistance, and property management services in Antalya, Turkey.',
+};
+
+const propertyTypes = [
+  { name: 'Luxury Beachfront Villas', priceFrom: '€350,000', desc: 'Private villas with sea views, pools, and gardens in Belek, Lara, and Kemer. Direct beach access and premium locations.' },
+  { name: 'Modern City Apartments', priceFrom: '€80,000', desc: 'Contemporary apartments in Antalya city center and Konyaaltı, ideal for rental income and city living.' },
+  { name: 'Resort-Style Compound Homes', priceFrom: '€200,000', desc: 'Gated community homes with shared amenities, pools, and 24/7 security in Belek and Side.' },
+  { name: 'Investment Land Plots', priceFrom: '€50,000', desc: 'Buildable land in growing areas of Antalya province, suitable for residential or commercial development.' },
+];
+
+const steps = [
+  { title: 'Consultation', desc: 'Share your budget, preferences, and goals via WhatsApp. We provide a tailored property shortlist.' },
+  { title: 'Property Viewing', desc: 'We arrange in-person or virtual tours of selected properties, including neighborhood analysis.' },
+  { title: 'Legal Due Diligence', desc: 'Our partner lawyers verify title deeds, zoning status, and ensure the property is free of encumbrances.' },
+  { title: 'Purchase & Registration', desc: 'We guide you through the purchase process, tax payments, and title deed transfer at the Land Registry.' },
+  { title: 'Property Management', desc: 'Optional rental management and maintenance services for investors seeking passive income.' },
+];
+---
+
+<Layout title={title} description={description} schema={[breadcrumbSchema, serviceSchema]} canonical="/antalya-real-estate/">
+  <section class="relative flex min-h-[50vh] items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src={heroImage} alt="Luxury villa in Turkey" class="h-full w-full object-cover" fetchpriority="high" width="1920" height="1080" />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-950/90 via-primary-950/70 to-primary-950/40"></div>
+    </div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 py-16 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-primary-200 backdrop-blur-sm">
+          Real Estate & Investment
+        </span>
+        <h1 class="mt-6 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+          Antalya Real Estate & Property Investment
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-primary-100">
+          Invest in the Turkish Riviera. From luxury beachfront villas to modern city apartments,
+          we help you find, purchase, and manage property in Antalya with full legal support and
+          expert guidance.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <WhatsAppCTA label="Get Property Consultation" message="Hello, I am interested in buying property in Antalya. Please provide available options and a consultation." />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Real Estate', href: '/antalya-real-estate/' },
+  ]} />
+
+  <div class="mx-auto max-w-4xl px-4 py-12 lg:px-8">
+    <QuickFacts
+      title="Key Takeaways"
+      items={[
+        { label: 'Property types', value: 'Villas, apartments, compounds, land plots' },
+        { label: 'Price range', value: 'From €50,000 (land) to €1M+ (luxury villas)' },
+        { label: 'Foreign ownership', value: 'Allowed with Turkish citizenship eligibility' },
+        { label: 'Rental yield', value: '5-8% annually for short-term rentals' },
+        { label: 'Legal support', value: 'Partner lawyers handle all paperwork and title deeds' },
+        { label: 'Consultation', value: 'Free initial consultation via WhatsApp' },
+      ]}
+    />
+  </div>
+
+  <article class="mx-auto max-w-4xl px-4 pb-12 lg:px-8">
+    <h2 class="font-display text-3xl font-bold text-neutral-900">
+      Why Invest in Antalya Real Estate?
+    </h2>
+    <p class="mt-6 text-lg leading-relaxed text-neutral-700">
+      Antalya is not only Turkey\'s top tourism destination but also one of its most attractive
+      real estate markets. With over 15 million annual visitors, a growing expat community, and
+      a Mediterranean lifestyle that rivals Spain and Portugal, property in Antalya offers both
+      lifestyle benefits and strong investment returns. The region has seen consistent property
+      value appreciation, particularly in beachfront areas like Lara, Belek, and Konyaaltı, where
+      demand from both domestic and international buyers continues to rise.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      Turkey allows foreign nationals to purchase property with relatively straightforward
+      procedures, and investments above $400,000 qualify for Turkish citizenship by investment.
+      Additionally, rental yields in Antalya\'s tourist areas can reach 5-8% annually for
+      short-term holiday rentals, making it an attractive option for investors seeking passive
+      income. The cost of living is lower than in comparable European Mediterranean destinations,
+      and the quality of life, with 300+ sunny days, excellent healthcare, and modern
+      infrastructure, is exceptional.
+    </p>
+
+    <div class="my-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div class="overflow-hidden rounded-2xl shadow-lg">
+        <img src={villaImage} alt="Luxury villa with pool in Turkey" class="w-full object-cover" loading="lazy" width="400" height="250" />
+      </div>
+      <div class="overflow-hidden rounded-2xl shadow-lg">
+        <img src={mansionImage} alt="Waterfront mansion in Turkey" class="w-full object-cover" loading="lazy" width="400" height="250" />
+      </div>
+    </div>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Property Types Available
+    </h2>
+    <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+      {propertyTypes.map((prop) => (
+        <div class="rounded-2xl border border-neutral-200 p-6">
+          <div class="flex items-center justify-between">
+            <h3 class="font-display text-lg font-semibold text-neutral-900">{prop.name}</h3>
+            <span class="rounded-full bg-primary-100 px-3 py-1 text-xs font-bold text-primary-700">From {prop.priceFrom}</span>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-neutral-600">{prop.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Popular Areas for Property Investment
+    </h2>
+    <ul class="mt-6 space-y-4 text-base text-neutral-700">
+      <li class="flex items-start gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Lara</strong> – Beachfront apartments and villas just 10 km from the airport. High rental demand from tourists. A <strong>5-star hotel reservation in Lara region directly by the sea</strong> or a permanent home here offers the best of Mediterranean living.</span></li>
+      <li class="flex items-start gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Konyaaltı</strong> – Modern apartments with mountain and sea views, popular with expats and year-round residents.</span></li>
+      <li class="flex items-start gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Belek</strong> – Luxury villas within golf resort compounds, ideal for high-end investment and rental to golf tourists.</span></li>
+      <li class="flex items-start gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Kemer</strong> – Scenic properties nestled between mountains and sea, offering privacy and natural beauty.</span></li>
+      <li class="flex items-start gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Side</strong> – Historic coastal town with affordable apartments and growing rental demand.</span></li>
+    </ul>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      How Our Property Buying Process Works
+    </h2>
+    <div class="mt-8 space-y-4">
+      {steps.map((step, index) => (
+        <div class="flex gap-6 rounded-2xl border border-neutral-200 p-5">
+          <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary-900 text-lg font-bold text-white">
+            {index + 1}
+          </div>
+          <div>
+            <h3 class="font-display text-lg font-semibold text-neutral-900">{step.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-neutral-600">{step.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Turkish Citizenship by Investment
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      Foreign nationals who purchase property in Turkey valued at $400,000 or more are eligible to
+      apply for Turkish citizenship, including the passport, which grants visa-free access to over
+      110 countries. The process typically takes 3-6 months and includes the applicant\'s spouse
+      and children under 18. Our partner lawyers handle the entire citizenship application process,
+      from property valuation to document preparation and submission.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Property Management & Rental Income
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      For investors not residing in Antalya full-time, we offer comprehensive property management
+      services. This includes marketing your property for short-term holiday rentals, guest
+      check-in and check-out, housekeeping, maintenance, and monthly financial reporting.
+      Antalya\'s high tourist demand ensures strong occupancy rates, particularly from April to
+      October. Our management fee is a percentage of rental income, ensuring our interests are
+      aligned with yours.
+    </p>
+
+    <div class="mt-12 rounded-2xl bg-primary-50 p-8 text-center">
+      <h3 class="font-display text-2xl font-bold text-neutral-900">
+        Start Your Property Journey in Antalya
+      </h3>
+      <p class="mt-4 text-base text-neutral-600">
+        Contact us on WhatsApp for a free consultation, property shortlist, and investment
+        advice tailored to your goals.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <WhatsAppCTA label="Get Property Consultation" message="Hello, I am interested in buying property in Antalya. Please provide available options and a consultation." />
+      </div>
+    </div>
+  </article>
+</Layout>

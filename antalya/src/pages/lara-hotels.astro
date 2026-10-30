@@ -1,0 +1,239 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import WhatsAppCTA from '../components/WhatsAppCTA.astro';
+import QuickFacts from '../components/QuickFacts.astro';
+import { SITE, HOTELS, waLink } from '../data/site';
+
+const heroImage = 'https://images.pexels.com/photos/37752930/pexels-photo-37752930.jpeg?auto=compress&cs=tinysrgb&w=1920';
+const beachImage = 'https://images.pexels.com/photos/39648346/pexels-photo-39648346.jpeg?auto=compress&cs=tinysrgb&w=800';
+const sunsetImage = 'https://images.pexels.com/photos/31659570/pexels-photo-31659570.jpeg?auto=compress&cs=tinysrgb&w=800';
+
+const laraHotels = HOTELS.filter((h) => h.region === 'Lara');
+
+const title = 'Lara Hotels & Reservations | 5-Star Beachfront Resorts in Antalya | Tours Antalya';
+const description = 'Book the best 5-star hotels in Lara, Antalya. Beachfront all-inclusive resorts with direct sea access, water parks, and nightlife. Reserve via WhatsApp for exclusive rates.';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Lara Hotels', item: `${SITE.url}/lara-hotels/` },
+  ],
+};
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Luxury Hotels in Lara, Antalya',
+  itemListElement: laraHotels.map((h, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: h.name,
+    url: `${SITE.url}/hotels/${h.slug}/`,
+  })),
+};
+---
+
+<Layout title={title} description={description} schema={[breadcrumbSchema, itemListSchema]} canonical="/lara-hotels/">
+  <section class="relative flex min-h-[50vh] items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src={heroImage} alt="Aerial view of Antalya beachfront at twilight" class="h-full w-full object-cover" fetchpriority="high" width="1920" height="1080" />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-950/90 via-primary-950/70 to-primary-950/40"></div>
+    </div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 py-16 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-primary-200 backdrop-blur-sm">
+          Lara Beach Hotels
+        </span>
+        <h1 class="mt-6 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+          Lara Hotels & Reservations
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-primary-100">
+          Book the finest five-star beachfront resorts in Lara, Antalya. Just 10 minutes from the
+          airport, Lara offers golden sands, all-inclusive luxury, water parks, and vibrant
+          nightlife. Reserve directly via WhatsApp for exclusive rates.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <WhatsAppCTA label="Book a Lara Hotel" message="Hello, I want to book a 5-star hotel in Lara, Antalya. Please provide availability and rates." />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Lara Hotels', href: '/lara-hotels/' },
+  ]} />
+
+  <div class="mx-auto max-w-4xl px-4 py-12 lg:px-8">
+    <QuickFacts
+      title="Quick Facts"
+      items={[
+        { label: 'Location', value: 'Lara Beach, 8-12 km from Antalya Airport' },
+        { label: 'Beach type', value: 'Long sandy beach with Blue Flag status' },
+        { label: 'Hotel types', value: '5-star all-inclusive resorts' },
+        { label: 'Best for', value: 'Families, couples, beach lovers, nightlife seekers' },
+        { label: 'Price range', value: '$$$ to $$$$ per night (all-inclusive)' },
+        { label: 'Booking', value: 'Direct via WhatsApp, no middleman fees' },
+      ]}
+    />
+  </div>
+
+  <article class="mx-auto max-w-4xl px-4 pb-8 lg:px-8">
+    <h2 class="font-display text-3xl font-bold text-neutral-900">
+      Why Choose Lara for Your Antalya Holiday?
+    </h2>
+    <p class="mt-6 text-lg leading-relaxed text-neutral-700">
+      Lara Beach is Antalya\'s most popular resort area, and for good reason. Located just 8-12
+      kilometers from Antalya Airport, Lara offers the shortest transfer times of any resort area
+      in the region. The beach stretches for 12 kilometers of golden sand lapped by the warm
+      Mediterranean, and the coastline is lined with some of Turkey\'s most impressive five-star
+      all-inclusive resorts. A <strong>5-star hotel reservation in Lara region directly by the
+      sea</strong> puts you within steps of the water, with every meal, drink, and activity
+      included in one upfront price.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      Lara is also known for its vibrant nightlife, with major nightclubs like Gaga Club located
+      nearby. A <strong>Lara all-inclusive resort with nightclub access</strong> gives you the
+      best of both worlds: daytime relaxation on the beach and nighttime entertainment just
+      minutes away. The area also features shopping centers, water parks, and family attractions,
+      making it ideal for all types of travelers.
+    </p>
+
+    <div class="my-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div class="overflow-hidden rounded-2xl shadow-lg">
+        <img src={beachImage} alt="Antalya coastline with cliffs and ocean" class="w-full object-cover" loading="lazy" width="400" height="250" />
+      </div>
+      <div class="overflow-hidden rounded-2xl shadow-lg">
+        <img src={sunsetImage} alt="Sunrise over Antalya beach" class="w-full object-cover" loading="lazy" width="400" height="250" />
+      </div>
+    </div>
+  </article>
+
+  <!-- Lara Hotel Listings -->
+  <section class="mx-auto max-w-7xl px-4 pb-12 lg:px-8">
+    <h2 class="font-display text-3xl font-bold text-neutral-900">
+      Top Luxury Hotels in Lara
+    </h2>
+    <p class="mt-4 max-w-2xl text-base text-neutral-600">
+      These are the finest five-star resorts in the Lara region, all bookable directly via WhatsApp.
+    </p>
+
+    <div class="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {laraHotels.map((hotel, index) => (
+        <a
+          href={`/hotels/${hotel.slug}/`}
+          class="group flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-all hover:shadow-xl"
+        >
+          <div class="relative h-56 overflow-hidden">
+            <img
+              src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt={hotel.name}
+              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+              loading="lazy"
+              width="600"
+              height="300"
+            />
+            <div class="absolute top-3 left-3 rounded-full bg-primary-900/80 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm">
+              #{index + 1}
+            </div>
+            <div class="absolute top-3 right-3 rounded-full bg-gold-500 px-3 py-1 text-xs font-bold text-white">
+              {hotel.starRating}★ Resort
+            </div>
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <h3 class="font-display text-xl font-bold text-neutral-900 group-hover:text-primary-600">
+              {hotel.name}
+            </h3>
+            <p class="mt-1 text-sm text-primary-600 font-medium">{hotel.region}, Antalya</p>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-neutral-600">{hotel.shortDesc}</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {hotel.highlights.slice(0, 3).map((h) => (
+                <span class="rounded-full bg-primary-50 px-3 py-1 text-xs font-medium text-primary-700">
+                  {h}
+                </span>
+              ))}
+            </div>
+            <div class="mt-5 flex items-center justify-between">
+              <span class="text-sm font-semibold text-neutral-900">{hotel.priceRange}</span>
+              <span class="inline-flex items-center gap-1 text-sm font-semibold text-primary-600">
+                View Details
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform group-hover:translate-x-1">
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                  <polyline points="12 5 19 12 12 19"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- Reservation info -->
+    <div class="mt-12 rounded-2xl bg-neutral-50 p-8">
+      <h2 class="font-display text-2xl font-bold text-neutral-900">
+        How to Reserve a Lara Hotel
+      </h2>
+      <p class="mt-4 text-base leading-relaxed text-neutral-700">
+        Booking your Lara hotel through us is simple and comes with several advantages:
+      </p>
+      <ul class="mt-6 space-y-3 text-base text-neutral-700">
+        <li class="flex items-start gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Exclusive rates</strong> – We negotiate directly with hotels for rates lower than public booking platforms.</span></li>
+        <li class="flex items-start gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg><span><strong>No booking fees</strong> – You pay the hotel directly. We charge no service fees or commissions.</span></li>
+        <li class="flex items-start gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg><span><strong>VIP perks</strong> – Room upgrades, late checkout, and welcome amenities subject to availability.</span></li>
+        <li class="flex items-start gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Local support</strong> – We are based in Antalya and available 24/7 on WhatsApp during your stay.</span></li>
+        <li class="flex items-start gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Combined packages</strong> – Add airport transfers, tours, and nightlife bookings in one conversation.</span></li>
+      </ul>
+      <div class="mt-6">
+        <WhatsAppCTA label="Reserve a Lara Hotel Now" message="Hello, I want to book a 5-star hotel in Lara, Antalya. Please provide availability and rates for my dates." />
+      </div>
+    </div>
+  </section>
+
+  <article class="mx-auto max-w-4xl px-4 pb-12 lg:px-8">
+    <h2 class="mt-8 font-display text-3xl font-bold text-neutral-900">
+      Lara Beach: What to Expect
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      Lara Beach features a long, wide stretch of fine golden sand with gradual entry into the
+      sea, making it safe for children and non-swimmers. The water is warm from May to October,
+      reaching 28°C in peak summer. Most resorts offer direct beach access with sun loungers,
+      umbrellas, and beach service included in the all-inclusive package. Water sports such as
+      jet skiing, parasailing, and banana boat rides are available from beach operators.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      Beyond the beach, Lara offers shopping at the Terra City and Mall of Antalya shopping
+      centers, the Antalya Aquarium, Aqualand water park, and a growing number of restaurants
+      and cafes. The historic Kaleiçi Old Town is just 15 minutes away by taxi or local bus,
+      making Lara an ideal base for combining beach relaxation with cultural exploration.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Best Time to Visit Lara
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      The peak season in Lara runs from June to September, when all resorts operate at full
+      capacity with the complete entertainment program, water parks, and beach facilities. For
+      travelers seeking quieter beaches and lower rates, May and October offer excellent weather
+      with fewer crowds. April and November are pleasant for sightseeing but some outdoor
+      facilities may have limited hours. <strong>Antalya summer vacation business travel</strong>
+      is best planned for September, when the weather is still warm but the peak family crowds
+      have departed.
+    </p>
+
+    <div class="mt-12 rounded-2xl bg-primary-50 p-8 text-center">
+      <h3 class="font-display text-2xl font-bold text-neutral-900">
+        Ready to Book Your Lara Holiday?
+      </h3>
+      <p class="mt-4 text-base text-neutral-600">
+        Contact us on WhatsApp for the best available rates, personalized recommendations, and
+        instant booking confirmation.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <WhatsAppCTA label="Book Your Lara Hotel" message="Hello, I want to book a hotel in Lara, Antalya. Please help me find the best option for my dates." />
+      </div>
+    </div>
+  </article>
+</Layout>

@@ -1,0 +1,163 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import WhatsAppCTA from '../components/WhatsAppCTA.astro';
+import QuickFacts from '../components/QuickFacts.astro';
+import { SITE, HOTELS } from '../data/site';
+
+const heroImage = 'https://images.pexels.com/photos/16579451/pexels-photo-16579451.jpeg?auto=compress&cs=tinysrgb&w=1920';
+const beachImage = 'https://images.pexels.com/photos/12944616/pexels-photo-12944616.jpeg?auto=compress&cs=tinysrgb&w=800';
+
+const alanyaHotels = HOTELS.filter((h) => h.region === 'Alanya');
+
+const title = 'Alanya Hotels & Reservations | 5-Star Beach Resorts in Antalya | Tours Antalya';
+const description = 'Book 5-star hotels in Alanya, Antalya. Cleopatra Beach, Red Tower, castle views, and all-inclusive resorts. Reserve via WhatsApp for exclusive rates.';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Alanya Hotels', item: `${SITE.url}/alanya-hotels/` },
+  ],
+};
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Luxury Hotels in Alanya, Antalya',
+  itemListElement: alanyaHotels.map((h, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: h.name,
+    url: `${SITE.url}/hotels/${h.slug}/`,
+  })),
+};
+---
+
+<Layout title={title} description={description} schema={[breadcrumbSchema, itemListSchema]} canonical="/alanya-hotels/">
+  <section class="relative flex min-h-[50vh] items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src={heroImage} alt="Aerial view of Alanya coastline with mountains" class="h-full w-full object-cover" fetchpriority="high" width="1920" height="1080" />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-950/90 via-primary-950/70 to-primary-950/40"></div>
+    </div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 py-16 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-primary-200 backdrop-blur-sm">
+          Alanya Beach & Castle Resorts
+        </span>
+        <h1 class="mt-6 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+          Alanya Hotels & Reservations
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-primary-100">
+          Book luxury five-star resorts in Alanya, home to the famous Cleopatra Beach, the
+          medieval Red Tower, and a hilltop Seljuk castle. Affordable luxury on the eastern
+          Turkish Riviera. Reserve directly via WhatsApp.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <WhatsAppCTA label="Book an Alanya Hotel" message="Hello, I want to book a 5-star hotel in Alanya, Antalya. Please provide availability and rates." />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alanya Hotels', href: '/alanya-hotels/' },
+  ]} />
+
+  <div class="mx-auto max-w-4xl px-4 py-12 lg:px-8">
+    <QuickFacts
+      title="Quick Facts"
+      items={[
+        { label: 'Location', value: '125 km east of Antalya, 90 min from airport' },
+        { label: 'Known for', value: 'Cleopatra Beach, Alanya Castle, Red Tower' },
+        { label: 'Beach type', value: 'Long sandy beaches, warm and shallow water' },
+        { label: 'Top attractions', value: 'Alanya Castle, Damlatas Cave, Dim River' },
+        { label: 'Price range', value: '$$ to $$$ per night (all-inclusive)' },
+        { label: 'Booking', value: 'Direct via WhatsApp, no middleman fees' },
+      ]}
+    />
+  </div>
+
+  <article class="mx-auto max-w-4xl px-4 pb-8 lg:px-8">
+    <h2 class="font-display text-3xl font-bold text-neutral-900">
+      Why Choose Alanya for Your Antalya Holiday?
+    </h2>
+    <p class="mt-6 text-lg leading-relaxed text-neutral-700">
+      Alanya is a vibrant resort city at the eastern edge of the Antalya province, 125
+      kilometers from Antalya Airport. Known for its long sandy beaches, warm Mediterranean
+      waters, and the dramatic hilltop castle that overlooks the town, Alanya offers a more
+      affordable luxury experience compared to Belek and Lara while still delivering five-star
+      all-inclusive resort quality. The town\'s most famous beach, Cleopatra Beach, is said to
+      have been a gift from Mark Antony to the Egyptian queen, and its fine sand and clear water
+      live up to the legend.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      Alanya\'s old town sits beneath a 13th-century Seljuk castle, with the iconic Red Tower
+      (Kızılkule) and the shipyard (Tersane) standing as monuments to the region\'s medieval
+      maritime history. The Damlatas Cave, discovered in 1948, offers cool, humid air believed
+      to benefit respiratory conditions. The Dim River, a short drive from the city center,
+      provides a refreshing escape from the summer heat with riverside restaurants where you can
+      dine with your feet in the cool water. A <strong>private VIP transfer from Antalya
+      Airport</strong> to Alanya takes approximately 90 minutes.
+    </p>
+    <div class="my-8 overflow-hidden rounded-2xl shadow-lg">
+      <img src={beachImage} alt="Alanya coast with turquoise sea and mountains" class="w-full object-cover" loading="lazy" width="800" height="400" />
+    </div>
+  </article>
+
+  <section class="mx-auto max-w-7xl px-4 pb-12 lg:px-8">
+    <h2 class="font-display text-3xl font-bold text-neutral-900">Top Luxury Hotels in Alanya</h2>
+    <div class="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {alanyaHotels.map((hotel, index) => (
+        <a href={`/hotels/${hotel.slug}/`} class="group flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-all hover:shadow-xl">
+          <div class="relative h-56 overflow-hidden">
+            <img src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=600" alt={hotel.name} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" width="600" height="300" />
+            <div class="absolute top-3 left-3 rounded-full bg-primary-900/80 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm">#{index + 1}</div>
+            <div class="absolute top-3 right-3 rounded-full bg-gold-500 px-3 py-1 text-xs font-bold text-white">{hotel.starRating}★ Resort</div>
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <h3 class="font-display text-xl font-bold text-neutral-900 group-hover:text-primary-600">{hotel.name}</h3>
+            <p class="mt-1 text-sm text-primary-600 font-medium">{hotel.region}, Antalya</p>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-neutral-600">{hotel.shortDesc}</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {hotel.highlights.slice(0, 3).map((h) => (
+                <span class="rounded-full bg-primary-50 px-3 py-1 text-xs font-medium text-primary-700">{h}</span>
+              ))}
+            </div>
+            <div class="mt-5 flex items-center justify-between">
+              <span class="text-sm font-semibold text-neutral-900">{hotel.priceRange}</span>
+              <span class="inline-flex items-center gap-1 text-sm font-semibold text-primary-600">View Details
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+      <a href="/alanya-attractions/" class="group rounded-2xl border border-primary-200 bg-primary-50 p-6 text-center transition-all hover:shadow-lg">
+        <h3 class="font-display text-lg font-bold text-primary-700 group-hover:text-primary-800">Explore Alanya Attractions</h3>
+        <p class="mt-2 text-sm text-neutral-600">Alanya Castle, Cleopatra Beach, Dim River</p>
+      </a>
+      <a href="/antalya-airport-transfer/" class="group rounded-2xl border border-neutral-200 p-6 text-center transition-all hover:shadow-lg">
+        <h3 class="font-display text-lg font-bold text-neutral-900 group-hover:text-primary-600">VIP Airport Transfer to Alanya</h3>
+        <p class="mt-2 text-sm text-neutral-500">Mercedes V-Class, 90 min, fixed price</p>
+      </a>
+      <a href="/antalya-voyage-tour/" class="group rounded-2xl border border-neutral-200 p-6 text-center transition-all hover:shadow-lg">
+        <h3 class="font-display text-lg font-bold text-neutral-900 group-hover:text-primary-600">Boat Trips from Alanya</h3>
+        <p class="mt-2 text-sm text-neutral-500">Pirate caves and coastal sailing</p>
+      </a>
+    </div>
+
+    <div class="mt-12 rounded-2xl bg-primary-50 p-8 text-center">
+      <h3 class="font-display text-2xl font-bold text-neutral-900">Ready to Book Your Alanya Holiday?</h3>
+      <p class="mt-4 text-base text-neutral-600">Contact us on WhatsApp for the best available rates and personalized recommendations.</p>
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <WhatsAppCTA label="Book Your Alanya Hotel" message="Hello, I want to book a hotel in Alanya, Antalya. Please help me find the best option." />
+      </div>
+    </div>
+  </section>
+</Layout>

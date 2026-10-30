@@ -1,0 +1,224 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import WhatsAppCTA from '../components/WhatsAppCTA.astro';
+import QuickFacts from '../components/QuickFacts.astro';
+import { SITE, waLink } from '../data/site';
+
+const heroImage = 'https://images.pexels.com/photos/17455633/pexels-photo-17455633.jpeg?auto=compress&cs=tinysrgb&w=1920';
+const vanInterior = 'https://images.pexels.com/photos/17455632/pexels-photo-17455632.jpeg?auto=compress&cs=tinysrgb&w=800';
+const vanExterior = 'https://images.pexels.com/photos/17455633/pexels-photo-17455633.jpeg?auto=compress&cs=tinysrgb&w=800';
+
+const title = 'Antalya Airport VIP Transfer | Private Mercedes V-Class | Tours Antalya';
+const description = 'Book private VIP airport transfers from Antalya Airport (AYT) to Lara, Belek, Kemer, Side, and Alanya. Mercedes V-Class fleet, meet & greet, fixed prices, 24/7 service.';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Airport Transfer', item: `${SITE.url}/antalya-airport-transfer/` },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Antalya Airport VIP Transfer Service',
+  provider: { '@type': 'TravelAgency', name: SITE.name, url: SITE.url },
+  areaServed: ['Antalya Airport', 'Lara', 'Belek', 'Kemer', 'Side', 'Alanya'],
+  description: 'Private VIP airport transfers from Antalya Airport (AYT) in Mercedes V-Class vehicles with meet & greet and fixed prices.',
+};
+
+const routes = [
+  { from: 'Antalya Airport (AYT)', to: 'Lara', distance: '10 km', time: '15 min', fromPrice: '€25' },
+  { from: 'Antalya Airport (AYT)', to: 'Belek', distance: '30 km', time: '30 min', fromPrice: '€45' },
+  { from: 'Antalya Airport (AYT)', to: 'Kemer', distance: '50 km', time: '45 min', fromPrice: '€55' },
+  { from: 'Antalya Airport (AYT)', to: 'Side', distance: '75 km', time: '60 min', fromPrice: '€70' },
+  { from: 'Antalya Airport (AYT)', to: 'Alanya', distance: '125 km', time: '90 min', fromPrice: '€100' },
+  { from: 'Antalya Airport (AYT)', to: 'City Center', distance: '12 km', time: '20 min', fromPrice: '€25' },
+];
+---
+
+<Layout title={title} description={description} schema={[breadcrumbSchema, serviceSchema]} canonical="/antalya-airport-transfer/">
+  <section class="relative flex min-h-[50vh] items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src={heroImage} alt="Mercedes V-Class luxury van for airport transfer" class="h-full w-full object-cover" fetchpriority="high" width="1920" height="1080" />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-950/90 via-primary-950/70 to-primary-950/40"></div>
+    </div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 py-16 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-primary-200 backdrop-blur-sm">
+          VIP Airport Transfer
+        </span>
+        <h1 class="mt-6 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+          Antalya Airport VIP Transfer Service
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-primary-100">
+          Start your Antalya journey in luxury. Private Mercedes V-Class transfers from Antalya
+          Airport (AYT) to Lara, Belek, Kemer, Side, and Alanya. Professional chauffeurs, meet &
+          greet service, fixed prices, and 24/7 availability.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <WhatsAppCTA label="Get a Transfer Quote" message="Hello, I need a VIP airport transfer from Antalya Airport. Please provide a quote." />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Airport Transfer', href: '/antalya-airport-transfer/' },
+  ]} />
+
+  <div class="mx-auto max-w-4xl px-4 py-12 lg:px-8">
+    <QuickFacts
+      title="Quick Facts"
+      items={[
+        { label: 'Vehicle', value: 'Mercedes V-Class (VIP configuration)' },
+        { label: 'Capacity', value: 'Up to 7 passengers + luggage' },
+        { label: 'Service area', value: 'Lara, Belek, Kemer, Side, Alanya, City Center' },
+        { label: 'Availability', value: '24/7, including holidays' },
+        { label: 'Pricing', value: 'Fixed rates, no hidden fees or surge pricing' },
+        { label: 'Includes', value: 'Meet & greet, flight tracking, Wi-Fi, water' },
+      ]}
+    />
+  </div>
+
+  <article class="mx-auto max-w-4xl px-4 pb-12 lg:px-8">
+    <h2 class="font-display text-3xl font-bold text-neutral-900">
+      Private VIP Transfer from Antalya Airport
+    </h2>
+    <p class="mt-6 text-lg leading-relaxed text-neutral-700">
+      Arriving at Antalya Airport (AYT) after a long flight should be the start of your vacation,
+      not a stressful scramble for transportation. Our <strong>private VIP transfer from Antalya
+      Airport to Belek</strong>, Lara, Kemer, Side, and Alanya ensures a smooth, comfortable, and
+      luxurious beginning to your Antalya experience. We eliminate the uncertainty of taxi queues,
+      language barriers, and unexpected charges with our professional, fixed-price transfer
+      service.
+    </p>
+
+    <div class="my-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div class="overflow-hidden rounded-2xl shadow-lg">
+        <img src={vanExterior} alt="Mercedes V-Class exterior" class="w-full object-cover" loading="lazy" width="400" height="250" />
+      </div>
+      <div class="overflow-hidden rounded-2xl shadow-lg">
+        <img src={vanInterior} alt="Mercedes V-Class luxury interior" class="w-full object-cover" loading="lazy" width="400" height="250" />
+      </div>
+    </div>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Our Fleet: Mercedes V-Class
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      Our fleet consists exclusively of Mercedes V-Class vehicles, the gold standard for premium
+      passenger transport. Each vehicle is configured for VIP comfort with premium leather
+      seating, individual climate control, ambient lighting, complimentary Wi-Fi, and bottled
+      water. The V-Class comfortably accommodates up to 7 passengers with full luggage capacity,
+      making it ideal for families, business delegations, and small groups. All vehicles are
+      meticulously maintained, fully insured, and equipped with child seats upon request.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Meet & Greet Service
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      Our meet & greet service is the hallmark of our transfer experience. Upon landing, your
+      professional chauffeur will be waiting in the arrivals hall with a personalized name sign.
+      We track your flight in real time, adjusting our arrival for early or delayed flights at no
+      extra charge. Your driver will assist with luggage, escort you to the vehicle, and provide a
+      brief orientation about Antalya during the journey. For departing flights, we calculate
+      optimal pickup times based on your flight schedule and traffic conditions, ensuring you
+      arrive at the airport with ample time to spare.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Transfer Routes & Fixed Prices
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      We serve all major resort areas along the Antalya coast with transparent, fixed pricing. No
+      surge pricing, no meter anxiety, no hidden fees. The price quoted is the price you pay.
+    </p>
+
+    <div class="mt-8 overflow-hidden rounded-2xl border border-neutral-200">
+      <table class="w-full text-left text-sm">
+        <thead class="bg-primary-900 text-white">
+          <tr>
+            <th class="px-6 py-4 font-semibold">From</th>
+            <th class="px-6 py-4 font-semibold">To</th>
+            <th class="px-6 py-4 font-semibold">Distance</th>
+            <th class="px-6 py-4 font-semibold">Travel Time</th>
+            <th class="px-6 py-4 font-semibold">From</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-neutral-200">
+          {routes.map((route) => (
+            <tr class="hover:bg-neutral-50">
+              <td class="px-6 py-4 text-neutral-700">{route.from}</td>
+              <td class="px-6 py-4 font-medium text-neutral-900">{route.to}</td>
+              <td class="px-6 py-4 text-neutral-600">{route.distance}</td>
+              <td class="px-6 py-4 text-neutral-600">{route.time}</td>
+              <td class="px-6 py-4 font-bold text-primary-600">{route.fromPrice}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-4 text-xs text-neutral-500">
+      Prices are per vehicle (up to 7 passengers) and may vary by season. Contact us for an exact
+      quote for your travel dates.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Why Choose Our Transfer Service?
+    </h2>
+    <ul class="mt-6 space-y-4">
+      {[
+        { title: 'Flight Tracking', desc: 'We monitor your flight in real time and adjust pickup times for delays or early arrivals at no extra cost.' },
+        { title: 'Fixed Prices', desc: 'The price we quote is the price you pay. No meters, no surge pricing, no surprise charges.' },
+        { title: '24/7 Availability', desc: 'Our transfer service operates around the clock, every day of the year, including public holidays.' },
+        { title: 'Professional Chauffeurs', desc: 'Licensed, experienced, English-speaking drivers who know Antalya\'s roads and resorts intimately.' },
+        { title: 'Premium Vehicles', desc: 'Mercedes V-Class with leather interiors, climate control, Wi-Fi, and complimentary refreshments.' },
+        { title: 'Child Seats Available', desc: 'Complimentary child and infant seats available on request, ensuring safety for the whole family.' },
+      ].map((item) => (
+        <li class="flex items-start gap-4 rounded-xl border border-neutral-200 p-5">
+          <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary-100">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-neutral-900">{item.title}</h3>
+            <p class="mt-1 text-sm text-neutral-600">{item.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Booking Your Transfer
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      Booking your VIP airport transfer is simple and fast. Send us a WhatsApp message with your
+      flight details (airline, flight number, arrival time) and your destination hotel or address.
+      We will confirm your booking within minutes, providing the fixed price and driver details.
+      On the day of arrival, your chauffeur will be waiting at the airport. It\'s that easy.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      For business travelers organizing group transfers, we offer multi-vehicle coordination,
+      dedicated greeters for VIP delegations, and customized signage. Contact us to discuss your
+      requirements.
+    </p>
+
+    <div class="mt-12 rounded-2xl bg-success-50 p-8 text-center">
+      <h3 class="font-display text-2xl font-bold text-neutral-900">
+        Get Your Transfer Quote Now
+      </h3>
+      <p class="mt-4 text-base text-neutral-600">
+        Send us your flight details and destination on WhatsApp for an instant quote. Our team is
+        available 24/7.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <WhatsAppCTA label="Get a Transfer Quote via WhatsApp" message="Hello, I need a VIP transfer from Antalya Airport. My flight details are: [airline] [flight number] arriving at [time]. Destination: [hotel/area]. Please provide a quote." />
+      </div>
+    </div>
+  </article>
+</Layout>

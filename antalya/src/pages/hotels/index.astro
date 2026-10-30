@@ -1,0 +1,141 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import WhatsAppCTA from '../../components/WhatsAppCTA.astro';
+import QuickFacts from '../../components/QuickFacts.astro';
+import { SITE, HOTELS, waLink } from '../../data/site';
+
+const heroImage = 'https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1920';
+
+const title = 'Top 10 Luxury Hotels in Antalya | Five-Star Resort Guide';
+const description = 'Discover the top 10 five-star luxury hotels in Antalya, Turkey. From Maxx Royal Belek to Mardan Palace, compare amenities, locations, and book via WhatsApp for exclusive rates.';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Hotels', item: `${SITE.url}/hotels/` },
+  ],
+};
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Top 10 Luxury Hotels in Antalya',
+  itemListElement: HOTELS.map((h, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: h.name,
+    url: `${SITE.url}/hotels/${h.slug}/`,
+  })),
+};
+---
+
+<Layout title={title} description={description} schema={[breadcrumbSchema, itemListSchema]} canonical="/hotels/">
+  <section class="relative flex min-h-[45vh] items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src={heroImage} alt="Luxury resort pool in Antalya" class="h-full w-full object-cover" fetchpriority="high" width="1920" height="1080" />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-950/90 via-primary-950/70 to-primary-950/40"></div>
+    </div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 py-16 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-primary-200 backdrop-blur-sm">
+          Luxury Hotels
+        </span>
+        <h1 class="mt-6 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+          Top 10 Luxury Hotels in Antalya
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-primary-100">
+          Handpicked five-star resorts offering the finest accommodation on the Turkish Riviera.
+          From Belek's golf resorts to Lara's beachfront palaces, find your perfect stay and book
+          directly via WhatsApp for exclusive rates.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Hotels', href: '/hotels/' },
+  ]} />
+
+  <div class="mx-auto max-w-4xl px-4 py-12 lg:px-8">
+    <QuickFacts
+      title="Quick Facts"
+      items={[
+        { label: 'Total hotels listed', value: '10 five-star resorts' },
+        { label: 'Regions covered', value: 'Belek, Lara, Side' },
+        { label: 'Price range', value: '$$$ to $$$$ (premium to ultra-luxury)' },
+        { label: 'Booking method', value: 'Direct via WhatsApp, no middleman fees' },
+        { label: 'Best for', value: 'Families, couples, golfers, business travelers' },
+        { label: 'Included amenities', value: 'All-inclusive, spa, beach access, entertainment' },
+      ]}
+    />
+  </div>
+
+  <section class="mx-auto max-w-7xl px-4 pb-12 lg:px-8">
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {HOTELS.map((hotel, index) => (
+        <a
+          href={`/hotels/${hotel.slug}/`}
+          class="group flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-all hover:shadow-xl"
+        >
+          <div class="relative h-56 overflow-hidden">
+            <img
+              src={`https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=600`}
+              alt={hotel.name}
+              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+              loading="lazy"
+              width="600"
+              height="300"
+            />
+            <div class="absolute top-3 left-3 rounded-full bg-primary-900/80 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm">
+              #{index + 1}
+            </div>
+            <div class="absolute top-3 right-3 rounded-full bg-gold-500 px-3 py-1 text-xs font-bold text-white">
+              {hotel.starRating}★ Resort
+            </div>
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <h2 class="font-display text-xl font-bold text-neutral-900 group-hover:text-primary-600">
+              {hotel.name}
+            </h2>
+            <p class="mt-1 text-sm text-primary-600 font-medium">{hotel.region}, Antalya</p>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-neutral-600">{hotel.shortDesc}</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {hotel.highlights.slice(0, 3).map((h) => (
+                <span class="rounded-full bg-primary-50 px-3 py-1 text-xs font-medium text-primary-700">
+                  {h}
+                </span>
+              ))}
+            </div>
+            <div class="mt-5 flex items-center justify-between">
+              <span class="text-sm font-semibold text-neutral-900">{hotel.priceRange}</span>
+              <span class="inline-flex items-center gap-1 text-sm font-semibold text-primary-600">
+                View Details
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform group-hover:translate-x-1">
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                  <polyline points="12 5 19 12 12 19"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-12 rounded-2xl bg-primary-50 p-8 text-center">
+      <h2 class="font-display text-2xl font-bold text-neutral-900">
+        Not Sure Which Hotel Is Right for You?
+      </h2>
+      <p class="mt-4 text-base text-neutral-600">
+        Our local experts can recommend the perfect hotel based on your preferences, budget, and
+        travel dates. Chat with us on WhatsApp for personalized advice and exclusive rates.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <WhatsAppCTA label="Get Hotel Recommendations" message="Hello, I need help choosing a luxury hotel in Antalya. Can you recommend options based on my preferences?" />
+      </div>
+    </div>
+  </section>
+</Layout>

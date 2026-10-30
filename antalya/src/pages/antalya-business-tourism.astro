@@ -1,0 +1,220 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import WhatsAppCTA from '../components/WhatsAppCTA.astro';
+import QuickFacts from '../components/QuickFacts.astro';
+import { SITE, waLink } from '../data/site';
+
+const heroImage = 'https://images.pexels.com/photos/9275222/pexels-photo-9275222.jpeg?auto=compress&cs=tinysrgb&w=1920';
+const conferenceImage = 'https://images.pexels.com/photos/26202153/pexels-photo-26202153.jpeg?auto=compress&cs=tinysrgb&w=800';
+const meetingImage = 'https://images.pexels.com/photos/1181738/pexels-photo-1181738.jpeg?auto=compress&cs=tinysrgb&w=800';
+
+const title = 'Antalya Business Tourism & MICE Travel Services | Tours Antalya';
+const description = 'Plan corporate events, MICE travel, conferences, and golf retreats in Antalya, Turkey. VIP business travel services with luxury hotel venues and professional event management.';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Business Tourism', item: `${SITE.url}/antalya-business-tourism/` },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Antalya Business & MICE Travel Services',
+  provider: { '@type': 'TravelAgency', name: SITE.name, url: SITE.url },
+  areaServed: 'Antalya, Turkey',
+  description: 'Corporate event planning, MICE travel, conference venues, golf tourism, and business retreats in Antalya.',
+};
+---
+
+<Layout title={title} description={description} schema={[breadcrumbSchema, serviceSchema]} canonical="/antalya-business-tourism/">
+  <!-- Hero -->
+  <section class="relative flex min-h-[50vh] items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src={heroImage} alt="Business conference in Antalya" class="h-full w-full object-cover" fetchpriority="high" width="1920" height="1080" />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-950/90 via-primary-950/75 to-primary-950/50"></div>
+    </div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 py-16 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-primary-200 backdrop-blur-sm">
+          Business & Trade Hub
+        </span>
+        <h1 class="mt-6 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+          Antalya Business Tourism & MICE Travel
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-primary-100">
+          The Turkish Riviera is not just a leisure destination. Antalya has become a global hub
+          for meetings, incentives, conferences, and exhibitions, offering world-class venues,
+          championship golf, and luxury hospitality for corporate travelers.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <WhatsAppCTA label="Plan Your Business Event" message="Hello, I am interested in business travel and MICE services in Antalya." />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Business Tourism', href: '/antalya-business-tourism/' },
+  ]} />
+
+  <div class="mx-auto max-w-4xl px-4 py-12 lg:px-8">
+    <QuickFacts
+      title="Key Takeaways"
+      items={[
+        { label: 'MICE capacity', value: '2,583 hotel establishments, 647,628 beds' },
+        { label: 'Major events hosted', value: 'NATO Summit, COP31, EXPO 2016' },
+        { label: 'Golf courses', value: '15+ championship courses in Belek' },
+        { label: 'Convention centers', value: 'Multiple venues with 7,500+ capacity' },
+        { label: 'Airport access', value: 'Antalya Airport (AYT), 3 terminals' },
+        { label: 'Best season for MICE', value: 'September to May (mild weather)' },
+      ]}
+    />
+  </div>
+
+  <article class="mx-auto max-w-4xl px-4 pb-12 lg:px-8">
+    <h2 class="font-display text-3xl font-bold text-neutral-900">
+      Antalya: A Global MICE Destination
+    </h2>
+    <p class="mt-6 text-lg leading-relaxed text-neutral-700">
+      Antalya has firmly established itself as one of the world's premier destinations for MICE
+      tourism, which encompasses Meetings, Incentives, Conferences, and Exhibitions. The city's
+      unique combination of modern infrastructure, Mediterranean climate, and luxury hospitality
+      makes it an ideal choice for organizations seeking a distinctive setting for their corporate
+      events. With over 2,583 hotel establishments and 647,628 beds, Antalya has the capacity to
+      host events of any scale, from intimate executive board meetings to massive international
+      congresses.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      The city has proven its capability by hosting landmark global events, including the NATO
+      Summit, which brought world leaders to Antalya's shores, and COP31, the United Nations
+      Climate Change Conference. EXPO 2016 further demonstrated Antalya's ability to orchestrate
+      large-scale international gatherings. These events have left a lasting legacy of upgraded
+      infrastructure, enhanced security protocols, and a hospitality sector that understands the
+      specific needs of corporate and government delegations.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Luxury Hotel Conference Facilities
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      Antalya's top resorts double as world-class conference venues, offering state-of-the-art
+      meeting rooms, exhibition halls, and breakout spaces alongside their leisure amenities.
+      Properties like Maxx Royal Belek and Regnum Carya feature dedicated congress centers with
+      capacities exceeding 1,000 delegates, simultaneous translation booths, high-speed internet,
+      and professional audiovisual equipment. These venues allow organizations to combine productive
+      business sessions with golf tournaments, spa retreats, and gala dinners, all within a single
+      property.
+    </p>
+
+    <div class="my-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div class="overflow-hidden rounded-2xl shadow-lg">
+        <img src={conferenceImage} alt="Conference hall with attendees in Antalya" class="w-full object-cover" loading="lazy" width="400" height="250" />
+      </div>
+      <div class="overflow-hidden rounded-2xl shadow-lg">
+        <img src={meetingImage} alt="Corporate meeting in a modern Antalya hotel" class="w-full object-cover" loading="lazy" width="400" height="250" />
+      </div>
+    </div>
+
+    <h3 class="mt-8 font-display text-2xl font-semibold text-neutral-900">
+      Top Conference Hotels in Antalya
+    </h3>
+    <ul class="mt-4 space-y-3 text-base text-neutral-700">
+      <li class="flex items-start gap-3">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+        <span><strong>Maxx Royal Belek</strong> and <strong>Regnum Carya</strong> offer dedicated congress centers with 1,000+ delegate capacity, simultaneous translation, and gala dinner venues for up to 2,000 guests.</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+        <span><strong>Mardan Palace</strong> provides opulent meeting spaces and a grand ballroom suitable for high-profile government and corporate summits.</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+        <span><strong>Rixos Premium Belek</strong> features a convention center with modular meeting rooms and beachfront event spaces.</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+        <span><strong>Concorde De Luxe Resort Lara</strong> offers versatile conference facilities just 10 minutes from Antalya Airport.</span>
+      </li>
+    </ul>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Golf Tourism in Belek
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      Belek, situated between Antalya and Side, has become synonymous with golf tourism in Turkey.
+      The region boasts more than 15 championship golf courses, many designed by golfing legends
+      such as Colin Montgomerie, Sir Nick Faldo, and Ian Poulter. A <strong>Belek golf hotel and
+      spa package</strong> is the ideal choice for corporate incentive trips, combining team-building
+      on the fairways with luxury spa treatments and fine dining in the evenings.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      Courses like the Regnum Carya Golf & Resort Club, Cullinan Links Golf Club, and the Montgomerie
+      Maxx Royal have hosted the Turkish Airlines Open, part of the European Tour. These
+      world-class facilities are set against a stunning backdrop of pine forests, eucalyptus trees,
+      and the shimmering Mediterranean, providing an unforgettable golfing experience for players of
+      all skill levels. We arrange complete golf packages including tee times, equipment rental,
+      golf academy sessions, and clubhouse dining.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Corporate Retreats and Incentive Travel
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      An <strong>Antalya summer vacation business travel</strong> combination is increasingly
+      popular among companies looking to reward top performers or conduct strategic off-site
+      meetings. The region's all-inclusive luxury resorts make budgeting straightforward, while
+      the wide range of activities, from Jeep safaris in the Taurus Mountains to yacht cruises
+      along the coast, provides endless team-building opportunities.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      Our corporate retreat packages include private meeting room rentals, customized team-building
+      activities, gala dinner organization, audiovisual equipment, airport transfers for all
+      delegates, and 24/7 on-site coordination. Whether you are planning a 10-person executive
+      strategy session or a 500-person annual company celebration, we handle every detail with
+      precision and discretion.
+    </p>
+
+    <h2 class="mt-12 font-display text-3xl font-bold text-neutral-900">
+      Antalya Trade & Investment Opportunities
+    </h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700">
+      Beyond tourism, Antalya presents significant trade and investment opportunities. The city's
+      strategic location on the Mediterranean, with excellent air connectivity to Europe, the Middle
+      East, and Central Asia, makes it an attractive hub for international business. The Antalya
+      Free Zone, established to promote export-oriented investment, hosts companies in sectors
+      ranging from manufacturing to technology services.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      The tourism sector itself offers investment potential, with the region's 2,583 hotel
+      establishments and 647,628 beds representing a mature infrastructure with room for
+      innovation in boutique properties, eco-tourism, and wellness retreats. The local government
+      actively supports foreign investment through incentives and streamlined procedures, making
+      Antalya an accessible entry point for businesses looking to establish a presence in Turkey.
+    </p>
+    <p class="mt-4 text-base leading-relaxed text-neutral-700">
+      For business travelers looking to combine trade exploration with tourism, our services
+      include arranging meetings with local partners, factory and site visits, translation
+      services, and tailored itineraries that maximize productive time while showcasing the best
+      of Antalya. We also assist with <a href="https://tourviza.ir/تور-آنتالیا-از-ارومیه/" class="text-primary-600 underline hover:text-primary-700">تور آنتالیا از ارومیه</a> connections for Persian-speaking business travelers and offer access to a <a href="https://www.sevlux.ir/vip-services/luxury-yacht-charter-istanbul/" class="text-primary-600 underline hover:text-primary-700">luxury yacht charter Istanbul</a> for high-level networking events.
+    </p>
+
+    <div class="mt-12 rounded-2xl bg-primary-50 p-8 text-center">
+      <h3 class="font-display text-2xl font-bold text-neutral-900">
+        Ready to Plan Your Business Event in Antalya?
+      </h3>
+      <p class="mt-4 text-base text-neutral-600">
+        Contact us on WhatsApp for customized MICE packages, conference venue selection, and
+        corporate retreat planning. Our local experts respond within minutes.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <WhatsAppCTA label="Get a Business Quote" message="Hello, I would like to plan a business event or corporate retreat in Antalya. Please provide details and quotes." />
+      </div>
+    </div>
+  </article>
+</Layout>

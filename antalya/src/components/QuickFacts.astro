@@ -1,0 +1,20 @@
+---
+interface Props {
+  title: string;
+  items: { label: string; value: string }[];
+}
+
+const { title, items } = Astro.props;
+---
+
+<aside class="my-8 rounded-2xl border border-primary-100 bg-primary-50/50 p-6">
+  <h2 class="text-sm font-bold uppercase tracking-wider text-primary-700">{title}</h2>
+  <dl class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+    {items.map((item) => (
+      <div class="flex items-start gap-2">
+        <dt class="text-sm font-semibold text-neutral-700">{item.label}:</dt>
+        <dd class="text-sm text-neutral-600">{item.value}</dd>
+      </div>
+    ))}
+  </dl>
+</aside>
