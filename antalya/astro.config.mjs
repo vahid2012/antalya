@@ -5,6 +5,6 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.toursantaya.ir',
+  site: 'https://www.toursantalya.ir',
   integrations: [tailwind(), sitemap()],
 });
